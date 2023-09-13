@@ -196,10 +196,12 @@ public class MateriaVista extends javax.swing.JInternalFrame {
             jTFCodigo.setText(String.valueOf(mb.getId()));
             jTFNombre.setText(mb.getNombre());
             jTFAnioMateria.setText(String.valueOf(mb.getAnio()));
-
+            jRadioBEstado.setSelected(mb.isEstado()); // Establecer el radio button como seleccionado
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "Error en el codigo" + ex.getMessage());
         }
+        
+        
     }//GEN-LAST:event_jBBuscarActionPerformed
 
     private void jBNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNuevoActionPerformed
@@ -236,8 +238,7 @@ public class MateriaVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBGuardarActionPerformed
 
     private void jRadioBEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioBEstadoActionPerformed
-
-       
+       jRadioBEstado.setSelected(true);
     }//GEN-LAST:event_jRadioBEstadoActionPerformed
 
 
