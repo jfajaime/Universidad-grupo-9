@@ -26,8 +26,7 @@ public class ListadoDeMaterias extends javax.swing.JInternalFrame {
     public ListadoDeMaterias() {
         initComponents();
         armarCabecera();
-       ListadoDeMaterias lm=new ListadoDeMaterias();
-       lm.listarMaterias();
+        listarMaterias();
     }
 
   
