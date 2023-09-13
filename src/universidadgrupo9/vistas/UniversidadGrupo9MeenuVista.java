@@ -33,6 +33,7 @@ public class UniversidadGrupo9MeenuVista extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
@@ -75,6 +76,11 @@ public class UniversidadGrupo9MeenuVista extends javax.swing.JFrame {
 
         jMenu2.setText("Materias");
         jMenu2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jMenu2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu2ActionPerformed(evt);
+            }
+        });
 
         jMenuItem2.setText("Formulario de Materia");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
@@ -83,6 +89,14 @@ public class UniversidadGrupo9MeenuVista extends javax.swing.JFrame {
             }
         });
         jMenu2.add(jMenuItem2);
+
+        jMenuItem6.setText("Listar Materias");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem6);
 
         jMenuBar1.add(jMenu2);
 
@@ -195,6 +209,21 @@ public class UniversidadGrupo9MeenuVista extends javax.swing.JFrame {
         escritorio.moveToFront(bAxM);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
+    private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
+        
+        
+    }//GEN-LAST:event_jMenu2ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+           
+        escritorio.removeAll();
+        escritorio.repaint();
+        ListadoDeMaterias LxM=new ListadoDeMaterias();
+        LxM.setVisible(true);
+        escritorio.add(LxM);
+        escritorio.moveToFront(LxM);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -250,6 +279,7 @@ public class UniversidadGrupo9MeenuVista extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     // End of variables declaration//GEN-END:variables
 
    

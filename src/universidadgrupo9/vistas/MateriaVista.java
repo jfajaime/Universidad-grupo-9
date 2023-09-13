@@ -61,6 +61,12 @@ public class MateriaVista extends javax.swing.JInternalFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel5.setText("Estado");
 
+        jRadioBEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioBEstadoActionPerformed(evt);
+            }
+        });
+
         jBBuscar.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jBBuscar.setText("Buscar");
         jBBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -87,6 +93,11 @@ public class MateriaVista extends javax.swing.JInternalFrame {
 
         jBGuardar.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jBGuardar.setText("Guardar");
+        jBGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBGuardarActionPerformed(evt);
+            }
+        });
 
         jBSalir.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jBSalir.setText("Salir");
@@ -210,6 +221,24 @@ public class MateriaVista extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Error en el codigo" + ex.getMessage());
         }
     }//GEN-LAST:event_jBEliminarActionPerformed
+
+    private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
+
+    if(jTFCodigo==null){
+        
+       // Materia mat=new Materia(jTFNombre.getText(),jTFAnioMateria,jRadioBEstado.enable());
+        
+        MateriaData md=new MateriaData();
+        
+ 
+    }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBGuardarActionPerformed
+
+    private void jRadioBEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioBEstadoActionPerformed
+
+       
+    }//GEN-LAST:event_jRadioBEstadoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
