@@ -201,7 +201,7 @@ public class MateriaVista extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Error en el codigo" + ex.getMessage());
         }
         
-        
+
     }//GEN-LAST:event_jBBuscarActionPerformed
 
     private void jBNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNuevoActionPerformed
