@@ -1,20 +1,33 @@
 package universidadgrupo9.vistas;
 
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import universidadgrupo9.accesoADatos.AlumnoData;
 import universidadgrupo9.entidades.Alumno;
-import universidadgrupo9.entidades.Materia;
 
 public class InscripcionVista extends javax.swing.JInternalFrame {
 
     private DefaultTableModel modelo = new DefaultTableModel();
-
+    
     public InscripcionVista() {
         initComponents();
         cabecera();
+        cargarComboBox();
     }
+    
+    private void cargarComboBox() {
+        
+        AlumnoData alumnosData = new AlumnoData();
+        
+        jCAlumnos.removeAllItems(); 
+        
+        ArrayList<Alumno> alumnos = (ArrayList<Alumno>) alumnosData.listarAlumnos();//Funciono casteandolo a ArrayList
 
+        for (Alumno alumno : alumnos) {
+            jCAlumnos.addItem(alumno.toString());
+        }
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -79,7 +92,7 @@ public class InscripcionVista extends javax.swing.JInternalFrame {
         jRadioButton2.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jRadioButton2.setText("Materias No Inscriptas");
 
-        jCAlumnos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jCAlumnos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "uno", "dos", "tres", "cuatro" }));
         jCAlumnos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCAlumnosActionPerformed(evt);
@@ -207,7 +220,5 @@ private void cabecera() {
         //modelo.addRow();
     }
 
-    private void cargarComboBox(AlumnoData alumno) { 
-       jCAlumnos.addItem(alumno.listarAlumnos().toString());
-    }
+    
 }
