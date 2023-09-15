@@ -193,16 +193,16 @@ public class MateriaVista extends javax.swing.JInternalFrame {
             MateriaData md = new MateriaData();
             Materia mb = md.buscarMateria(id);
 
-            if(mb==null){
-               JOptionPane.showMessageDialog(this, "No hay materia con es codigo");
-                
-            }else{
-            jTFCodigo.setText(String.valueOf(mb.getId()));
-            jTFNombre.setText(mb.getNombre());
-            jTFAnioMateria.setText(String.valueOf(mb.getAnio()));
-            jRadioBEstado.setSelected(mb.isEstado()); // Establecer el radio button como seleccionado
+            if (mb == null) {
+                JOptionPane.showMessageDialog(this, "No hay materia con es codigo");
+
+            } else {
+                jTFCodigo.setText(String.valueOf(mb.getId()));
+                jTFNombre.setText(mb.getNombre());
+                jTFAnioMateria.setText(String.valueOf(mb.getAnio()));
+                jRadioBEstado.setSelected(mb.isEstado()); // Establecer el radio button como seleccionado
             }
-            
+
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "Error en el numero de codigo -" + ex.getMessage());
         }
@@ -233,30 +233,34 @@ public class MateriaVista extends javax.swing.JInternalFrame {
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
 
-        if (jTFCodigo.getText().isEmpty()) {
+        try {
+            if (jTFCodigo.getText().isEmpty()) {
 
-            if (jTFNombre.getText().isEmpty() || jTFAnioMateria.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Hay campos vacios");
+                if (jTFNombre.getText().isEmpty() || jTFAnioMateria.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "Hay campos vacios");
 
-            } else {
-                Materia mat = new Materia(jTFNombre.getText(), Integer.parseInt(jTFAnioMateria.getText()), true);
-                MateriaData md = new MateriaData();
-                md.guardarMateria(mat);
-            }
+                } else {
 
-        } else{
-            
-             if (jTFNombre.getText().isEmpty() || jTFAnioMateria.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Hay campos vacios");
+                    Materia mat = new Materia(jTFNombre.getText(), Integer.parseInt(jTFAnioMateria.getText()), true);
+                    MateriaData md = new MateriaData();
+                    md.guardarMateria(mat);
+                }
 
             } else {
-                Materia mat = new Materia(Integer.parseInt(jTFCodigo.getText()),jTFNombre.getText(), Integer.parseInt(jTFAnioMateria.getText()),  jRadioBEstado.isSelected());
-                MateriaData md = new MateriaData();
-                md.modificarMateria(mat);
+
+                if (jTFNombre.getText().isEmpty() || jTFAnioMateria.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "Hay campos vacios");
+
+                } else {
+                    Materia mat = new Materia(Integer.parseInt(jTFCodigo.getText()), jTFNombre.getText(), Integer.parseInt(jTFAnioMateria.getText()), jRadioBEstado.isSelected());
+                    MateriaData md = new MateriaData();
+                    md.modificarMateria(mat);
+                }
+
             }
-      
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Error en el campo numerico");
         }
- 
     }//GEN-LAST:event_jBGuardarActionPerformed
 
     private void jRadioBEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioBEstadoActionPerformed
@@ -264,7 +268,7 @@ public class MateriaVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jRadioBEstadoActionPerformed
 
     private void jBSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalirActionPerformed
-         
+
         this.dispose();
     }//GEN-LAST:event_jBSalirActionPerformed
 
