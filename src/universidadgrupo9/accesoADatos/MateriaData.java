@@ -24,12 +24,12 @@ import universidadgrupo9.entidades.Materia;
 public class MateriaData {
       private static Connection conex = null;
 
-    public MateriaData() {
-        
-        conex=Conexion.getConexion();
-    }
+    private static Connection conex = null;
 
-   
+    public MateriaData() {
+
+        conex = Conexion.getConexion();
+    }
 
     public void guardarMateria(Materia mat) {
 
@@ -46,14 +46,14 @@ public class MateriaData {
             if (rs.next()) {
                 mat.setId(rs.getInt(1));
             } else {
-                System.out.println("No se pudo recuperar el Id");
+                JOptionPane.showMessageDialog(null, "No se pudo recuperar el Id");
             }
             ps.close();
             rs.close();
-            System.out.println("Cargado");
+            JOptionPane.showMessageDialog(null, "Cargada con exito");
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error de conexion \n" + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error de conexion -" + ex.getMessage());
 
         }
     }
@@ -64,7 +64,7 @@ public class MateriaData {
         String sql = "SELECT * FROM materia WHERE idMateria=?";
 
         try {
-            conex = Conexion.getConexion();
+
             PreparedStatement ps = conex.prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
@@ -80,8 +80,8 @@ public class MateriaData {
             ps.close();
             rs.close();
         } catch (SQLException ex) {
-            //JOptionPane.showMessageDialog(null, "Error de conexion \n" + ex.getMessage());
-            Logger.getLogger(MateriaData.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error de conexion -" + ex.getMessage());
+
         }
 
         return m;
@@ -90,16 +90,14 @@ public class MateriaData {
 
     public void modificarMateria(Materia mat) {
 
-               String query = "UPDATE materia SET nombre = ?, año = ?, estado = ? WHERE idMateria = ?";
+        String query = "UPDATE materia SET nombre = ?, año = ?, estado = ? WHERE idMateria = ?";
 
         try {
-
             PreparedStatement ps = conex.prepareStatement(query);
-
             ps.setString(1, mat.getNombre());
             ps.setInt(2, mat.getAnio());
             ps.setBoolean(3, mat.isEstado());
-            ps.setInt(4,mat.getId());
+            ps.setInt(4, mat.getId());
             int mod = ps.executeUpdate();
             if (mod == 1) {
                 JOptionPane.showMessageDialog(null, "Actualizacion exitosa");
@@ -110,33 +108,32 @@ public class MateriaData {
             ps.close();
 
         } catch (SQLException ex) {
-            Logger.getLogger(MateriaData.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error de conexion -" + ex.getMessage());
         }
 
     }
 
     public void eliminarMateria(int id) {
 
-     
         String query = "UPDATE materia SET estado = 0 WHERE idMateria = ?";
 
         try {
 
             PreparedStatement ps = conex.prepareStatement(query);
-           ps.setInt(1, id);
-           
+            ps.setInt(1, id);
+
             int mod = ps.executeUpdate();
-            
+
             if (mod == 1) {
                 JOptionPane.showMessageDialog(null, "Borrado exitosa");
 
             } else {
-                JOptionPane.showMessageDialog(null, "Error al borrar la materia");
+                JOptionPane.showMessageDialog(null, "El codigo de la materia no existe");
             }
             ps.close();
 
         } catch (SQLException ex) {
-            Logger.getLogger(MateriaData.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error de conexion -" + ex.getMessage());
         }
     }
 
@@ -163,7 +160,7 @@ public class MateriaData {
             rs.close();
 
         } catch (SQLException ex) {
-            Logger.getLogger(MateriaData.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error de conexion -" + ex.getMessage());
         }
 
         return materia;
