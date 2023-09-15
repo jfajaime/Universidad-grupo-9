@@ -194,7 +194,7 @@ public class MateriaVista extends javax.swing.JInternalFrame {
             Materia mb = md.buscarMateria(id);
 
             if (mb == null) {
-                JOptionPane.showMessageDialog(this, "No hay materia con es codigo");
+                JOptionPane.showMessageDialog(this, "No hay materia con ese codigo");
 
             } else {
                 jTFCodigo.setText(String.valueOf(mb.getId()));
@@ -244,6 +244,11 @@ public class MateriaVista extends javax.swing.JInternalFrame {
                     Materia mat = new Materia(jTFNombre.getText(), Integer.parseInt(jTFAnioMateria.getText()), true);
                     MateriaData md = new MateriaData();
                     md.guardarMateria(mat);
+                    jTFCodigo.setText("");
+                    jTFNombre.setText("");
+                    jTFAnioMateria.setText("");
+                    jRadioBEstado.setSelected(false);
+
                 }
 
             } else {
@@ -255,6 +260,11 @@ public class MateriaVista extends javax.swing.JInternalFrame {
                     Materia mat = new Materia(Integer.parseInt(jTFCodigo.getText()), jTFNombre.getText(), Integer.parseInt(jTFAnioMateria.getText()), jRadioBEstado.isSelected());
                     MateriaData md = new MateriaData();
                     md.modificarMateria(mat);
+                    jTFCodigo.setText("");
+                    jTFNombre.setText("");
+                    jTFAnioMateria.setText("");
+                    jRadioBEstado.setSelected(false);
+
                 }
 
             }
