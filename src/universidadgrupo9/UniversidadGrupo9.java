@@ -1,18 +1,13 @@
 package universidadgrupo9;
 
-import java.sql.Connection;
-import universidadgrupo9.accesoADatos.AlumnoData;
-import universidadgrupo9.accesoADatos.Conexion;
-import universidadgrupo9.accesoADatos.MateriaData;
-
 public class UniversidadGrupo9 {
 
     public static void main(String[] args) {
 //        Connection con = Conexion.getConexion();
 //        AlumnoData a=new AlumnoData();
 //        a.buscarAlumno(0);//crear alumnos
-        MateriaData m = new MateriaData();
-        m.buscarMateria(1);
+//        MateriaData m = new MateriaData();
+//        m.buscarMateria(1);
 //        InscripcionData b = new InscripcionData();
 //        Inscripcion insc = new Inscripcion();
 //        b.guardarInscripcion(insc);//ver

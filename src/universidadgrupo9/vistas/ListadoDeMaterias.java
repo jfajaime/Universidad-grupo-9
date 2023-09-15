@@ -39,6 +39,8 @@ public class ListadoDeMaterias extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTListaMaterias = new javax.swing.JTable();
 
+        setClosable(true);
+
         jLabel1.setText("Listado de Materias");
 
         jTListaMaterias.setModel(new javax.swing.table.DefaultTableModel(
