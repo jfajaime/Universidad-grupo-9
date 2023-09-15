@@ -32,7 +32,7 @@ public class Conexion {
                 JOptionPane.showMessageDialog(null, "Conexion exitosa");
                 
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Error al conectrse a base de datos " + ex.getMessage());
+                JOptionPane.showMessageDialog(null, "Error al conectarse a base de datos " + ex.getMessage());
             }
         }
         return connection;  

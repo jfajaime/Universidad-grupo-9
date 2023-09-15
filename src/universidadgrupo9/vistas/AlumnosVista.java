@@ -215,7 +215,7 @@ import universidadgrupo9.entidades.Alumno;
     }//GEN-LAST:event_jBBuscarAlumnoXDNIActionPerformed
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
-       
+      try{
     // Obtén los datos del formulario
     int dni = Integer.parseInt(jTFDni.getText());
     String apellido = jTFApellido.getText();
@@ -232,7 +232,7 @@ import universidadgrupo9.entidades.Alumno;
     alumnoData.guardarAlumno(nuevoAlumno); // Guarda el alumno en la base de datos
 
     // Puedes mostrar un mensaje de éxito aquí si lo deseas
-    JOptionPane.showMessageDialog(this, "Alumno guardado exitosamente");
+    //JOptionPane.showMessageDialog(this, "Alumno guardado exitosamente");
 
     // Limpia los campos del formulario después de guardar
     jTFDni.setText("");
@@ -240,10 +240,13 @@ import universidadgrupo9.entidades.Alumno;
     jTFNombre.setText("");
     jRadioBEstado.setSelected(false);
     jDateChooser1.setDate(null); // Borra la fecha seleccionada
+     
+      }catch(NumberFormatException ex){
+          
+          JOptionPane.showMessageDialog(this, "Hay algun error en los campos numericos -" +ex.getMessage());
+            }
 
-
-
-
+    
     }//GEN-LAST:event_jBGuardarActionPerformed
 
 
