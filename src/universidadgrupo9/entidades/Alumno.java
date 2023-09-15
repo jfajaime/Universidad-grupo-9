@@ -32,7 +32,7 @@ public class Alumno {
     };
 
     public Alumno(int dni, String apellido, String nombre, LocalDate fechaN, boolean estado) {
-        this.id=-1;
+        
         this.dni = dni;
         this.apellido = apellido;
         this.nombre = nombre;
@@ -40,10 +40,11 @@ public class Alumno {
         this.estado = estado;
     }
      public Alumno() {
-        this.id=-1;
+      
        
     }
 
+    
     public int getDni() {
         return dni;
     }

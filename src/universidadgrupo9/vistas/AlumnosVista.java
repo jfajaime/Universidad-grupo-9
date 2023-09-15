@@ -4,6 +4,13 @@
  * and open the template in the editor.
  */
 package universidadgrupo9.vistas;
+import java.time.LocalDate;
+import java.time.ZoneId;
+
+import javax.swing.JOptionPane;
+import universidadgrupo9.accesoADatos.AlumnoData;
+import universidadgrupo9.entidades.Alumno;
+
 
 /**
  *
@@ -80,6 +87,11 @@ package universidadgrupo9.vistas;
 
         jBGuardar.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jBGuardar.setText("Guardar");
+        jBGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBGuardarActionPerformed(evt);
+            }
+        });
 
         jBSalir.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jBSalir.setText("Salir");
@@ -173,8 +185,66 @@ package universidadgrupo9.vistas;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBBuscarAlumnoXDNIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarAlumnoXDNIActionPerformed
-        // TODO add your handling code here:
+                                                         
+//    // Obtén el DNI ingresado en el campo de texto
+//    int dni = Integer.parseInt(jTFDni.getText());
+//
+//    // Crea una instancia de AlumnoData para buscar al alumno
+//    AlumnoData alumnoData = new AlumnoData();
+//    
+//    // Llama al método buscarAlumnoPorDNI de AlumnoData para obtener los datos del alumno
+//    Alumno alumno = alumnoData.buscaAlumnoPorDni(dni);
+//    
+//    if (alumno != null) {
+//        // Si se encontró al alumno, muestra sus datos en los campos del formulario
+//        jTFApellido.setText(alumno.getApellido());
+//        jTFNombre.setText(alumno.getNombre());
+//        jRadioBEstado.setSelected(alumno.isEstado());
+//        
+//        // Convierte la fecha de nacimiento a un objeto java.util.Date
+//        java.util.Date fechaNacimiento = java.sql.Date.valueOf(alumno.getFechaNacimiento());
+//        jDateChooser1.setDate(fechaNacimiento);
+//        
+//        // Puedes agregar aquí más acciones si lo necesitas
+//    } else {
+//        // Si no se encontró al alumno, puedes mostrar un mensaje de error o realizar otra acción
+//        JOptionPane.showMessageDialog(this, "Alumno no encontrado");
+//    }
+
+
     }//GEN-LAST:event_jBBuscarAlumnoXDNIActionPerformed
+
+    private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
+       
+    // Obtén los datos del formulario
+    int dni = Integer.parseInt(jTFDni.getText());
+    String apellido = jTFApellido.getText();
+    String nombre = jTFNombre.getText();
+    java.util.Date fechaNacimientoUtil = (java.util.Date) jDateChooser1.getDate();
+    LocalDate fechaNacimiento = fechaNacimientoUtil.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+    boolean estado = jRadioBEstado.isSelected(); // Si el botón de radio está seleccionado, estado será true
+
+    // Crea un objeto Alumno con los datos del formulario
+    Alumno nuevoAlumno = new Alumno(dni, apellido, nombre,  fechaNacimiento, estado);
+
+    // Llama al método guardarAlumno de tu clase AlumnoData para guardar el nuevo alumno
+    AlumnoData alumnoData = new AlumnoData(); // Crea una instancia de AlumnoData
+    alumnoData.guardarAlumno(nuevoAlumno); // Guarda el alumno en la base de datos
+
+    // Puedes mostrar un mensaje de éxito aquí si lo deseas
+    JOptionPane.showMessageDialog(this, "Alumno guardado exitosamente");
+
+    // Limpia los campos del formulario después de guardar
+    jTFDni.setText("");
+    jTFApellido.setText("");
+    jTFNombre.setText("");
+    jRadioBEstado.setSelected(false);
+    jDateChooser1.setDate(null); // Borra la fecha seleccionada
+
+
+
+
+    }//GEN-LAST:event_jBGuardarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
