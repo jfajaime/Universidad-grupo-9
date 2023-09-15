@@ -34,10 +34,7 @@ public class Alumno {
         this.fechaN = fechaN;
         this.estado = estado;
     }
-     public Alumno() {
-      
-       
-    }
+     public Alumno() {}
 
     
     public int getDni() {

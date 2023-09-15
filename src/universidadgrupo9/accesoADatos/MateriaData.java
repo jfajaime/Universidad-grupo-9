@@ -7,19 +7,16 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import universidadgrupo9.entidades.Materia;
 
 public class MateriaData {
-      private static Connection conex = null;
-
-    private static Connection conex = null;
+      private static Connection con= null;
+    
 
     public MateriaData() {
 
-        conex = Conexion.getConexion();
+        con = Conexion.getConexion();
     }
 
     public void guardarMateria(Materia mat) {
@@ -28,7 +25,7 @@ public class MateriaData {
 
         try {
 
-            PreparedStatement ps = conex.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, mat.getNombre());
             ps.setInt(2, mat.getAnio());
             ps.setBoolean(3, mat.isEstado());
@@ -56,7 +53,7 @@ public class MateriaData {
 
         try {
 
-            PreparedStatement ps = conex.prepareStatement(sql);
+            PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -84,7 +81,7 @@ public class MateriaData {
         String query = "UPDATE materia SET nombre = ?, año = ?, estado = ? WHERE idMateria = ?";
 
         try {
-            PreparedStatement ps = conex.prepareStatement(query);
+            PreparedStatement ps = con.prepareStatement(query);
             ps.setString(1, mat.getNombre());
             ps.setInt(2, mat.getAnio());
             ps.setBoolean(3, mat.isEstado());
@@ -110,7 +107,7 @@ public class MateriaData {
 
         try {
 
-            PreparedStatement ps = conex.prepareStatement(query);
+            PreparedStatement ps = con.prepareStatement(query);
             ps.setInt(1, id);
 
             int mod = ps.executeUpdate();
@@ -135,8 +132,8 @@ public class MateriaData {
         String sql = "SELECT * FROM materia ";
 
         try {
-            conex = Conexion.getConexion();
-            PreparedStatement ps = conex.prepareStatement(sql);
+            con = Conexion.getConexion();
+            PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
 
