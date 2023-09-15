@@ -231,9 +231,7 @@ import universidadgrupo9.entidades.Alumno;
     AlumnoData alumnoData = new AlumnoData(); // Crea una instancia de AlumnoData
     alumnoData.guardarAlumno(nuevoAlumno); // Guarda el alumno en la base de datos
 
-    // Puedes mostrar un mensaje de éxito aquí si lo deseas
-    //JOptionPane.showMessageDialog(this, "Alumno guardado exitosamente");
-
+    
     // Limpia los campos del formulario después de guardar
     jTFDni.setText("");
     jTFApellido.setText("");
