@@ -1,6 +1,9 @@
 package universidadgrupo9.vistas;
 
+import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
+import universidadgrupo9.accesoADatos.AlumnoData;
+import universidadgrupo9.entidades.Alumno;
 
 public class NotasVista extends javax.swing.JInternalFrame {
     private DefaultTableModel modelo = new DefaultTableModel();
@@ -8,15 +11,29 @@ public class NotasVista extends javax.swing.JInternalFrame {
     public NotasVista() {
         initComponents();
         cabecera();
+        cargarComboBox();
     }
+    
+    private void cargarComboBox() {
 
+        AlumnoData alumnosData = new AlumnoData();
+
+        jCNotas.removeAllItems();
+
+        ArrayList<Alumno> alumnos = (ArrayList<Alumno>) alumnosData.listarAlumnos();//Funciono casteandolo a ArrayList
+
+        for (Alumno alumno : alumnos) {
+            jCNotas.addItem(alumno.toString());
+        }
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jCNotas = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTNotas = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
@@ -31,7 +48,12 @@ public class NotasVista extends javax.swing.JInternalFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jLabel2.setText("Seleccione un Alumno");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jCNotas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jCNotas.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jCNotasItemStateChanged(evt);
+            }
+        });
 
         jTNotas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -62,7 +84,7 @@ public class NotasVista extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jCNotas, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -86,7 +108,7 @@ public class NotasVista extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jCNotas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39)
@@ -99,11 +121,14 @@ public class NotasVista extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jCNotasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCNotasItemStateChanged
+    }//GEN-LAST:event_jCNotasItemStateChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jCNotas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

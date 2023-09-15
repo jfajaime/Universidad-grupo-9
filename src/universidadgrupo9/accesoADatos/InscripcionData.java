@@ -15,7 +15,7 @@ import universidadgrupo9.entidades.Materia;
 public class InscripcionData {
 
     private Connection con = null;
-    // private MateriaData matData;
+    private MateriaData matData;
     private AlumnoData aluData;
 
     public InscripcionData() {
@@ -196,7 +196,6 @@ public class InscripcionData {
                 + "INNER JOIN inscripcion i "
                 + "ON a.idAlumno = i.idAlumno "
                 + "WHERE i.idMateria = ?";
-
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, idMateria);
@@ -204,12 +203,10 @@ public class InscripcionData {
 
             while (rs.next()) {
                 Alumno alumno = new Alumno();
-
                 alumno.setId(rs.getInt("idAlumno"));
                 alumno.setNombre(rs.getString("nombre"));
                 alumno.setApellido(rs.getString("apellido"));
                 alumno.setDni(rs.getInt("dni"));
-
                 alumnosXMateria.add(alumno);
             }
             ps.close();
@@ -219,5 +216,4 @@ public class InscripcionData {
         }
         return alumnosXMateria;
     }
-
 }

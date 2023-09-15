@@ -1,7 +1,6 @@
 package universidadgrupo9.vistas;
 
 import java.util.ArrayList;
-import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import universidadgrupo9.accesoADatos.AlumnoData;
 import universidadgrupo9.entidades.Alumno;
@@ -92,7 +91,7 @@ public class InscripcionVista extends javax.swing.JInternalFrame {
         jRadioButton2.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jRadioButton2.setText("Materias No Inscriptas");
 
-        jCAlumnos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "uno", "dos", "tres", "cuatro" }));
+        jCAlumnos.setMaximumRowCount(5);
         jCAlumnos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCAlumnosActionPerformed(evt);
