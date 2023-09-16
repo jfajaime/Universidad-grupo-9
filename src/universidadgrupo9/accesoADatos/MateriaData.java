@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package universidadgrupo9.accesoADatos;
 
 import java.sql.Connection;
@@ -15,25 +10,13 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import universidadgrupo9.entidades.Materia;
 
-/**
- *
- * @author josel
- */
 public class MateriaData {
-<<<<<<< HEAD
+
       private static Connection con = null;
 
     public MateriaData() {
 
         con = Conexion.getConexion();
-=======
-
-    private static Connection con = null;
-
-    public MateriaData() {
-
-        con= Conexion.getConexion();
->>>>>>> 06e59e3777ff53967b872c1ac7347b70b8375892
     }
 
     public void guardarMateria(Materia mat) {
@@ -150,12 +133,11 @@ public class MateriaData {
         String sql = "SELECT * FROM materia ";
 
         try {
-<<<<<<< HEAD
+
             con = Conexion.getConexion();
-=======
-            
->>>>>>> 06e59e3777ff53967b872c1ac7347b70b8375892
+
             PreparedStatement ps = con.prepareStatement(sql);
+
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
 
