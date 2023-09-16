@@ -35,11 +35,12 @@ public class InscripcionVista extends javax.swing.JInternalFrame {
         jTable1 = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
+        jRadioButton1 = new javax.swing.JRadioButton();
         jCAlumnos = new javax.swing.JComboBox<>();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTInscripcion = new javax.swing.JTable();
@@ -85,11 +86,13 @@ public class InscripcionVista extends javax.swing.JInternalFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setText("Listado de Materias");
 
-        jRadioButton1.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        jRadioButton1.setText("Materias Inscriptas");
-
+        buttonGroup1.add(jRadioButton2);
         jRadioButton2.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jRadioButton2.setText("Materias No Inscriptas");
+
+        buttonGroup1.add(jRadioButton1);
+        jRadioButton1.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        jRadioButton1.setText("Materias Inscriptas");
 
         jCAlumnos.setMaximumRowCount(5);
         jCAlumnos.addActionListener(new java.awt.event.ActionListener() {
@@ -192,6 +195,7 @@ public class InscripcionVista extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -216,7 +220,7 @@ private void cabecera() {
     }
 
     private void cargarDatos() {
-        //modelo.addRow();
+        modelo.addRow((Object[]) jCAlumnos.getSelectedItem());
     }
 
     
