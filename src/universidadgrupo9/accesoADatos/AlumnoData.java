@@ -33,6 +33,9 @@ public class AlumnoData {
 
         String sql = "insert into alumno (dni, apellido, nombre, fechaNac, estado) values (?, ?, ?, ?, ?)";
         try {
+            
+            if (alumno !=null) {
+                
            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, alumno.getDni());
             ps.setString(2,alumno.getApellido());
@@ -48,6 +51,7 @@ public class AlumnoData {
             }
             ps.close();
             rs.close();
+            }
 
             JOptionPane.showMessageDialog(null, "Alumno añadido con exito.");
 
@@ -91,7 +95,7 @@ public class AlumnoData {
     public Alumno buscaAlumnoPorDni(int dni) {
 
         Alumno alumno = null;
-        String sql = "select idAlumno, dni, apellido, nombre, fechanac, from alumno where dni = ? and estado = 1";
+        String sql = "select idAlumno, dni, apellido, nombre, fechanac from alumno where dni = ? and estado = 1";
         PreparedStatement ps = null;
 
         try {
@@ -177,12 +181,12 @@ public class AlumnoData {
         }
     }
 
-    public void eliminarAlumno(int id) {
+    public void eliminarAlumno(int dni) {
 
         try {
-            String sql = "UPDATE alumno SET estado = 0 WHERE idAlumno = ? ";
+            String sql = "UPDATE alumno SET estado = 0 WHERE dni = ? ";
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, id);
+            ps.setInt(1, dni);
             int fila = ps.executeUpdate();
 
             if (fila == 1) {
