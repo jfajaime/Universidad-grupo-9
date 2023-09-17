@@ -13,6 +13,7 @@ public class InscripcionVista extends javax.swing.JInternalFrame {
     private DefaultTableModel modelo = new DefaultTableModel();
     InscripcionData inscripcionData = new InscripcionData();
     AlumnoData alumnosData = new AlumnoData();
+    Alumno alumnoX = new Alumno();
 
     public InscripcionVista() {
         initComponents();
@@ -47,8 +48,8 @@ public class InscripcionVista extends javax.swing.JInternalFrame {
         jCAlumnos = new javax.swing.JComboBox<>();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTInscripcion = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jBInscribir = new javax.swing.JButton();
+        jBBorrarInsripcion = new javax.swing.JButton();
         jBSalir = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -127,11 +128,21 @@ public class InscripcionVista extends javax.swing.JInternalFrame {
         ));
         jScrollPane3.setViewportView(jTInscripcion);
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        jButton1.setText("Inscribir");
+        jBInscribir.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        jBInscribir.setText("Inscribir");
+        jBInscribir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBInscribirActionPerformed(evt);
+            }
+        });
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        jButton2.setText("Borrar Inscripcion");
+        jBBorrarInsripcion.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        jBBorrarInsripcion.setText("Borrar Inscripcion");
+        jBBorrarInsripcion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBBorrarInsripcionActionPerformed(evt);
+            }
+        });
 
         jBSalir.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jBSalir.setText("Salir");
@@ -148,43 +159,41 @@ public class InscripcionVista extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(27, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addContainerGap(573, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGap(0, 21, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(176, 176, 176)
-                                .addComponent(jLabel1))
+                                .addComponent(jRMateriasInscriptas)
+                                .addGap(196, 196, 196)
+                                .addComponent(jRMateriasNOInscriptas))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jBBorrarInsripcion)
+                                    .addGap(156, 156, 156)
+                                    .addComponent(jBSalir))
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 605, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel2)
+                                    .addGap(31, 31, 31)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(29, 29, 29)
+                                            .addComponent(jLabel3))
+                                        .addComponent(jCAlumnos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(42, 42, 42))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jBInscribir)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jRMateriasInscriptas)
-                                        .addGap(196, 196, 196)
-                                        .addComponent(jRMateriasNOInscriptas))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jButton2)
-                                            .addGap(156, 156, 156)
-                                            .addComponent(jBSalir))
-                                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 605, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel2)
-                                            .addGap(31, 31, 31)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(layout.createSequentialGroup()
-                                                    .addGap(29, 29, 29)
-                                                    .addComponent(jLabel3))
-                                                .addComponent(jCAlumnos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                        .addGap(42, 42, 42))))
+                                .addGap(200, 200, 200)
+                                .addComponent(jLabel1)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jCAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -198,8 +207,8 @@ public class InscripcionVista extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
+                    .addComponent(jBInscribir)
+                    .addComponent(jBBorrarInsripcion)
                     .addComponent(jBSalir))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -225,12 +234,27 @@ public class InscripcionVista extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_jBSalirActionPerformed
 
+    private void jBInscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBInscribirActionPerformed
+        int filaS = jTInscripcion.getSelectedRow();
+        if (filaS != -1) {
+            //terminar de completar
+        }
+    }//GEN-LAST:event_jBInscribirActionPerformed
+
+    private void jBBorrarInsripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBorrarInsripcionActionPerformed
+        int filaS = jTInscripcion.getSelectedRow();
+        if (filaS != -1) {
+            modelo.removeRow(filaS);
+            //inscripcionData.borrarInscripcionMateriaAlumno(recibirDatosJCAlumnos(), jTInscripcion.get);
+        }
+    }//GEN-LAST:event_jBBorrarInsripcionActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton jBBorrarInsripcion;
+    private javax.swing.JButton jBInscribir;
     private javax.swing.JButton jBSalir;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jCAlumnos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -253,7 +277,7 @@ public class InscripcionVista extends javax.swing.JInternalFrame {
     
     private int recibirDatosJCAlumnos(){
         int dni = 0;
-        // Obtén la representación completa del alumno seleccionado
+        //Representación completa del alumno seleccionado
         String alumnoSeleccionado = jCAlumnos.getSelectedItem().toString();
 
         // Separa la cadena por espacios
@@ -270,13 +294,11 @@ public class InscripcionVista extends javax.swing.JInternalFrame {
         System.out.println(id);
         System.out.println(dni);
         return id;
-        
     }
 
     private void cargarDatos(int id) {
         modelo.setRowCount(0);
-        
-    
+
         if (jRMateriasInscriptas.isSelected()) {
             List<Materia> materiasCursadas = inscripcionData.obtenerMateriasCursadas(id);
             for (Materia materia : materiasCursadas) {

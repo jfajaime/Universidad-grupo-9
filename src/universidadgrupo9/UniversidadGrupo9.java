@@ -21,7 +21,7 @@ public class UniversidadGrupo9 {
 //        b.obtenerInscripciones();//ver
 //        b.obtenerAlumnosXMateria(1);//terminar
 //        b.obtenerMateriasCursadas(102);
-        b.obtenerMateriasNOCursadas(102);
+//        b.obtenerMateriasNOCursadas(102);
 //        b.borrarInscripcionMateriaAlumno(0, 0);//terminar
 //        b.actualizarNota(0, 0);//terminar
 //        b.obtenerAlumnosXMateria(0);//terminar
