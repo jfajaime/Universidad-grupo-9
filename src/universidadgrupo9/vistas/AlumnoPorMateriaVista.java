@@ -12,13 +12,9 @@ public class AlumnoPorMateriaVista extends javax.swing.JInternalFrame {
     }
     
     private void cargarComboBox() {
-        
-        MateriaData materiasData = new MateriaData();
-        
+        MateriaData materiasData = new MateriaData(); 
         jCMateria.removeAllItems(); 
-        
         ArrayList<Materia> materias = (ArrayList<Materia>) materiasData.listarMaterias();//Funciono casteandolo a ArrayList
-
         for (Materia materia : materias) {
             jCMateria.addItem(materia.toString());
         }
