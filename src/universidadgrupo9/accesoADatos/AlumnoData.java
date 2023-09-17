@@ -95,7 +95,9 @@ public class AlumnoData {
     public Alumno buscaAlumnoPorDni(int dni) {
 
         Alumno alumno = null;
+
         String sql = "select idAlumno, dni, apellido, nombre, fechanac from alumno where dni = ? and estado = 1";
+
         PreparedStatement ps = null;
 
         try {

@@ -110,16 +110,18 @@ public class InscripcionData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Inscripcion: " + ex.getMessage());
         }
+        System.out.println(inscripciones);
         return inscripciones;
     }
 
     public List<Materia> obtenerMateriasCursadas(int id) {
         List<Materia> materiasCursadas = new ArrayList<>();
-        String sql = "SELECT a.apellido, a.nombre, a.dni, m.* "
-                + "FROM alumno a "
-                + "INNER JOIN inscripcion i ON a.idAlumno = i.idAlumno "
-                + "INNER JOIN materia m ON i.idMateria = m.idMateria "
-                + "WHERE a.idAlumno = ?";
+        String sql = "SELECT m.* "
+                + "FROM materia m "
+                + "WHERE m.idMateria "
+                + "IN (SELECT i.idMateria "
+                + "FROM inscripcion i "
+                + "WHERE i.idAlumno = ?)";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -131,7 +133,8 @@ public class InscripcionData {
                 //igualo el objeto al id
                 materia.setId(rs.getInt("idMateria"));
                 materia.setNombre(rs.getString("nombre"));
-
+                materia.setAnio(rs.getInt("Año"));
+                
                 materiasCursadas.add(materia);
             }
             ps.close();
@@ -139,12 +142,44 @@ public class InscripcionData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Materia: " + ex.getMessage());
         }
-        return materiasCursadas;
+            System.out.println(materiasCursadas + "\n");
+            return materiasCursadas;
     }
 
-    public List<Materia> obtenerMateriasNOCursadas(int id) {//pasar idMateria en el parametro
-        //ver a que se refiere con materia no cursada, sera aquella que ningun alumno cursa?
-        return null;
+    public List<Materia> obtenerMateriasNOCursadas(int id) {
+        List<Materia> materiasNoCursadas = new ArrayList<>();
+
+        // Consulta SQL para obtener las materias no cursadas por el alumno
+        String sql = "SELECT m.* "
+                + "FROM materia m "
+                + "WHERE m.idMateria "
+                + "NOT IN (SELECT i.idMateria "
+                + "FROM inscripcion i "
+                + "WHERE i.idAlumno = ?)";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Materia materia = new Materia();
+                materia.setId(rs.getInt("idMateria"));
+                materia.setNombre(rs.getString("nombre"));
+                materia.setAnio(rs.getInt("Año"));
+
+                materiasNoCursadas.add(materia);
+            }
+
+            ps.close();
+            rs.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Materia: " + ex.getMessage());
+        }
+        for (Materia materiasNoCursada : materiasNoCursadas) {
+            System.out.println(materiasNoCursadas + "\n");
+        }
+        return materiasNoCursadas;
     }
 
     public void borrarInscripcionMateriaAlumno(int idAlumno, int idMateria) {
