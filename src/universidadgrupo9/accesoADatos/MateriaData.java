@@ -12,7 +12,7 @@ import universidadgrupo9.entidades.Materia;
 
 public class MateriaData {
 
-      private static Connection con = null;
+    private static Connection con = null;
 
     public MateriaData() {
 
@@ -21,29 +21,41 @@ public class MateriaData {
 
     public void guardarMateria(Materia mat) {
 
-        String query = "INSERT INTO materia(nombre,año,estado) VALUES (?,?,?) ";
+        String result=compareMat(mat.getNombre());
+        System.out.println(result);
+        System.out.println(mat.getNombre());
+      
+        if (result.equalsIgnoreCase(mat.getNombre())){
 
-        try {
+            JOptionPane.showMessageDialog(null, "La materia ya esta cargada");
 
-            PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            ps.setString(1, mat.getNombre());
-            ps.setInt(2, mat.getAnio());
-            ps.setBoolean(3, mat.isEstado());
-            ps.executeUpdate();
-            ResultSet rs = ps.getGeneratedKeys();
-            if (rs.next()) {
-                mat.setId(rs.getInt(1));
-            } else {
-                JOptionPane.showMessageDialog(null, "No se pudo recuperar el Id");
-            }
-            ps.close();
-            rs.close();
-            JOptionPane.showMessageDialog(null, "Cargada con exito");
-
+        } else {
             
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error de conexion -" + ex.getMessage());
+            String query = "INSERT INTO materia(nombre,año,estado) VALUES (?,?,?) ";
 
+            try {
+
+                PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+                ps.setString(1, mat.getNombre());
+                ps.setInt(2, mat.getAnio());
+                ps.setBoolean(3, mat.isEstado());
+                ps.executeUpdate();
+                ResultSet rs = ps.getGeneratedKeys();
+                
+                if (rs.next()) {
+                    mat.setId(rs.getInt(1));
+                } else {
+                    JOptionPane.showMessageDialog(null, "No se pudo recuperar el Id");
+                }
+                
+                ps.close();
+                rs.close();
+                JOptionPane.showMessageDialog(null, "Cargada con exito");
+
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Error de conexion -" + ex.getMessage());
+            }
+            
         }
     }
 
@@ -156,6 +168,35 @@ public class MateriaData {
         }
 
         return materia;
+
+    }
+
+    private String compareMat(String nombre) {
+
+        String sql = "SELECT nombre FROM materia where nombre=?";
+        
+        String igual = null;
+        
+        try {
+            
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1,nombre);
+            ResultSet rs = ps.executeQuery();
+            
+            if(rs.next()) {
+
+                igual=rs.getString("nombre");
+                
+            }
+            ps.close();
+            rs.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error de conexion -" + ex.getMessage());
+
+        }
+
+        return igual;
 
     }
 }

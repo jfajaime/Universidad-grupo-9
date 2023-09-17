@@ -119,6 +119,11 @@ public class UniversidadGrupo9MenuVista extends javax.swing.JFrame {
 
         jMenu5.setText("Salir");
         jMenu5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jMenu5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu5ActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(jMenu5);
 
         setJMenuBar(jMenuBar1);
@@ -196,6 +201,11 @@ public class UniversidadGrupo9MenuVista extends javax.swing.JFrame {
         escritorio.add(LxM);
         escritorio.moveToFront(LxM);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenu5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu5ActionPerformed
+
+        System.exit(0);
+    }//GEN-LAST:event_jMenu5ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

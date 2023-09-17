@@ -1,5 +1,7 @@
 package universidadgrupo9;
 
+import universidadgrupo9.accesoADatos.MateriaData;
+
 public class UniversidadGrupo9 {
 
     public static void main(String[] args) {
@@ -19,7 +21,7 @@ public class UniversidadGrupo9 {
 //        b.actualizarNota(0, 0);//terminar
 //        b.obtenerAlumnosXMateria(0);//terminar
         
-        
+     
     }
    
     
