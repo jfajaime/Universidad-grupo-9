@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -61,22 +61,22 @@ public class AlumnoData {
 
     }
 
-    public Alumno buscarAlumno(int id) {
+    public Alumno buscarAlumno(String nombre) {
         Alumno alumno = null;
-        String sql = "select dni, apellido, nombre, fechaNac from alumno where idAlumno =? and estado = 1";
+        String sql = "select dni, apellido, nombre, fechaNac from alumno where nombre = ? and estado = 1";
         PreparedStatement ps = null;
         try {
             ps = con.prepareStatement(sql);
-            ps.setInt(1, id);
+            ps.setString(1, nombre);
 
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
                 alumno = new Alumno();
-                alumno.setId(id);
+                alumno.setNombre(nombre);
                 alumno.setDni(rs.getInt("dni"));
                 alumno.setApellido(rs.getString("apellido"));
-                alumno.setNombre(rs.getString("nombre"));
+//                alumno.setNombre(rs.getString("nombre"));
                 alumno.setFechaN(rs.getDate("fechanac").toLocalDate());
                 alumno.setEstado(true);
 
@@ -201,4 +201,71 @@ public class AlumnoData {
         }
 
     }
+    public Alumno buscarApellido(String apellido) {
+        Alumno alumno = null;
+        String sql = "select idAlumno, dni, apellido, nombre, fechaNac from alumno where apellido = ? and estado = 1";
+        PreparedStatement ps = null;
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, apellido);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                alumno = new Alumno();
+                alumno.setNombre(apellido);
+                alumno.setId(rs.getInt("idAlumno"));
+                alumno.setDni(rs.getInt("dni"));
+                alumno.setApellido(rs.getString("apellido"));
+                alumno.setNombre(rs.getString("nombre"));
+                alumno.setFechaN(rs.getDate("fechanac").toLocalDate());
+                alumno.setEstado(true);
+
+            } else {
+                JOptionPane.showMessageDialog(null, "No existe el Alumno");
+                ps.close();
+                rs.close();
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Alumno " + ex.getMessage());
+        }
+
+        return alumno;
+    }
+    
+    public Alumno buscarXidAlumno(int id){
+            Alumno alumno = null;
+
+        String sql = " select  dni, apellido, nombre, fechanac from alumno where idAlumno = ?  and estado = 1 ";
+
+        PreparedStatement ps = null;
+
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                alumno = new Alumno();
+//                alumno.setId(rs.getInt("idAlumno"));
+                alumno.setDni(rs.getInt("dni"));
+                alumno.setApellido(rs.getString("apellido"));
+                alumno.setNombre(rs.getString("nombre"));
+                alumno.setFechaN(rs.getDate("fechaNac").toLocalDate());
+                alumno.setEstado(true);
+
+            } else {
+                JOptionPane.showMessageDialog(null, "No existe el alumno");
+            }
+            ps.close();
+            rs.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla alumno " + ex.getMessage());
+        }
+
+        return alumno;
+
+    }
+
 }
