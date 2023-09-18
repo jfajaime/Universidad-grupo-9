@@ -32,13 +32,12 @@ public class InscripcionData {
 
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
-                insc.setId(rs.getInt(1));//ver
+                insc.setId(rs.getInt(1));
                 JOptionPane.showMessageDialog(null, "Alumno inscripto con exito.");
             }
             ps.close();
             rs.close();
-
-        } catch (SQLException ex) {
+        } catch (SQLException | NullPointerException ex) {
             JOptionPane.showMessageDialog(null, "Inscripcion fallida\n" + ex.getMessage());
         }
     }
@@ -175,9 +174,6 @@ public class InscripcionData {
             rs.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Materia: " + ex.getMessage());
-        }
-        for (Materia materiasNoCursada : materiasNoCursadas) {
-            System.out.println(materiasNoCursadas + "\n");
         }
         return materiasNoCursadas;
     }
