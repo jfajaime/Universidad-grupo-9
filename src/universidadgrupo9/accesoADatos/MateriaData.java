@@ -62,7 +62,7 @@ public class MateriaData {
     public Materia buscarMateria(int id) {
 
         Materia m = null;
-        String sql = "SELECT * FROM materia WHERE idMateria=?";
+        String sql = "SELECT * FROM materia WHERE idMateria = ?";
 
         try {
 

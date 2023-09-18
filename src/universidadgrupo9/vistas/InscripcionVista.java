@@ -2,25 +2,29 @@ package universidadgrupo9.vistas;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import universidadgrupo9.accesoADatos.AlumnoData;
 import universidadgrupo9.entidades.Alumno;
 import universidadgrupo9.entidades.Materia;
 import universidadgrupo9.accesoADatos.InscripcionData;
+import universidadgrupo9.accesoADatos.MateriaData;
+import universidadgrupo9.entidades.Inscripcion;
 
 public class InscripcionVista extends javax.swing.JInternalFrame {
 
     private DefaultTableModel modelo = new DefaultTableModel();
     InscripcionData inscripcionData = new InscripcionData();
     AlumnoData alumnosData = new AlumnoData();
+    Inscripcion insc = new Inscripcion();
     Alumno alumnoX = new Alumno();
+    MateriaData materiaX = new MateriaData();
 
     public InscripcionVista() {
         initComponents();
         cabecera();
         cargarComboBox();
         cargarDatos(recibirDatosJCAlumnos());
-        jRMateriasInscriptas.setSelected(true);
     }
 
     private void cargarComboBox() {
@@ -236,16 +240,28 @@ public class InscripcionVista extends javax.swing.JInternalFrame {
 
     private void jBInscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBInscribirActionPerformed
         int filaS = jTInscripcion.getSelectedRow();
+        int idM = (int) jTInscripcion.getValueAt(filaS, 0);
+        Materia materia = materiaX.buscarMateria(idM);
+        Alumno alumno = alumnosData.buscarAlumno(recibirDatosJCAlumnos());
+   
+        insc = new Inscripcion(0.0, alumno, materia);
+        System.out.println("inscriipcion " + insc);
         if (filaS != -1) {
-            //terminar de completar
+           inscripcionData.guardarInscripcion(insc);
+           modelo.removeRow(filaS);
+        }else if (filaS == -1) {
+            JOptionPane.showMessageDialog(this, "No ha seleccionado ninguna materia");
         }
     }//GEN-LAST:event_jBInscribirActionPerformed
 
     private void jBBorrarInsripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBorrarInsripcionActionPerformed
         int filaS = jTInscripcion.getSelectedRow();
         if (filaS != -1) {
+            int idM = (int) jTInscripcion.getValueAt(filaS, 0);
+            inscripcionData.borrarInscripcionMateriaAlumno(recibirDatosJCAlumnos(), idM);
             modelo.removeRow(filaS);
-            //inscripcionData.borrarInscripcionMateriaAlumno(recibirDatosJCAlumnos(), jTInscripcion.get);
+        }else if (filaS == -1) {
+            JOptionPane.showMessageDialog(this, "No ha seleccionado ninguna materia");
         }
     }//GEN-LAST:event_jBBorrarInsripcionActionPerformed
 
@@ -274,42 +290,37 @@ public class InscripcionVista extends javax.swing.JInternalFrame {
         modelo.addColumn("Año");
         jTInscripcion.setModel(modelo);
     }
-    
-    private int recibirDatosJCAlumnos(){
-        int dni = 0;
-        //Representación completa del alumno seleccionado
-        String alumnoSeleccionado = jCAlumnos.getSelectedItem().toString();
 
+    private int recibirDatosJCAlumnos() {
+        int dni = 0;
+        String alumnoSeleccionado = jCAlumnos.getSelectedItem().toString();
         // Separa la cadena por espacios
         String[] partes = alumnoSeleccionado.split(" ");
-
         // La primera parte debe ser el DNI (suponiendo que la estructura es "DNI Apellido Nombre")
         String recuperarDni = partes[0];
-       
-        // Convierte el DNI en un valor numérico si es necesario
-        dni = Integer.parseInt(recuperarDni); // Esto es opcional si necesitas el DNI como número
-
-        // Ahora tienes el DNI en la variable 'dni' (o 'dniNumero' si lo convertiste a número)
-        int id = alumnosData.buscaAlumnoPorDni(dni).getId();
-        System.out.println(id);
-        System.out.println(dni);
-        return id;
+        dni = Integer.parseInt(recuperarDni);
+        int id = alumnosData.buscaAlumnoPorDni(dni).getId(); //recupero el id por medio del dni
+        return id;//lo envio como parametro al metodo 'cargarDatos(recibirDatosJCAlumnos)' en el constructor
     }
 
     private void cargarDatos(int id) {
         modelo.setRowCount(0);
-
+        if (!jRMateriasInscriptas.isSelected() && !jRMateriasNOInscriptas.isSelected()) {
+            jRMateriasInscriptas.setSelected(true); //si ningun jRadioButtom esta seleccionado, selecciona jRMateriasInsgresadas
+        }
         if (jRMateriasInscriptas.isSelected()) {
+            jBBorrarInsripcion.setEnabled(true);//habilita jBBorrarInscripcion
+            jBInscribir.setEnabled(false);//deshabilita jBInscripcion
             List<Materia> materiasCursadas = inscripcionData.obtenerMateriasCursadas(id);
             for (Materia materia : materiasCursadas) {
                 modelo.addRow(new Object[]{materia.getId(), materia.getNombre(), materia.getAnio()});
-                System.out.println("ID " + materia.getId() + "\nnombre " + materia.getNombre() + "\naño " + materia.getAnio());
             }
         } else if (jRMateriasNOInscriptas.isSelected()) {
+            jBInscribir.setEnabled(true);//habilita jBInsscripcion
+            jBBorrarInsripcion.setEnabled(false);//deshabilita jBBorrarInscripcion
             List<Materia> materiasNoCursadas = inscripcionData.obtenerMateriasNOCursadas(id);
             for (Materia materia : materiasNoCursadas) {
                 modelo.addRow(new Object[]{materia.getId(), materia.getNombre(), materia.getAnio()});
-                System.out.println("ID " + materia.getId() + "\nnombre " + materia.getNombre() + "\naño " + materia.getAnio());
             }
         }
     }
