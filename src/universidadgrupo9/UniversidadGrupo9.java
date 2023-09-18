@@ -1,11 +1,15 @@
 package universidadgrupo9;
 
+
+import universidadgrupo9.accesoADatos.MateriaData;
+
 import java.sql.Connection;
 import universidadgrupo9.accesoADatos.AlumnoData;
 import universidadgrupo9.accesoADatos.Conexion;
 import universidadgrupo9.accesoADatos.InscripcionData;
 import universidadgrupo9.accesoADatos.MateriaData;
 import universidadgrupo9.entidades.Inscripcion;
+
 
 public class UniversidadGrupo9 {
 
@@ -26,7 +30,7 @@ public class UniversidadGrupo9 {
 //        b.actualizarNota(0, 0);//terminar
 //        b.obtenerAlumnosXMateria(0);//terminar
         
-        
+     
     }
    
     
