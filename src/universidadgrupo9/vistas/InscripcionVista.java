@@ -2,6 +2,8 @@ package universidadgrupo9.vistas;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import universidadgrupo9.accesoADatos.AlumnoData;
@@ -9,6 +11,7 @@ import universidadgrupo9.entidades.Alumno;
 import universidadgrupo9.entidades.Materia;
 import universidadgrupo9.accesoADatos.InscripcionData;
 import universidadgrupo9.accesoADatos.MateriaData;
+import universidadgrupo9.entidades.AlumnoHijo;
 import universidadgrupo9.entidades.Inscripcion;
 
 public class InscripcionVista extends javax.swing.JInternalFrame {
@@ -22,18 +25,24 @@ public class InscripcionVista extends javax.swing.JInternalFrame {
 
     public InscripcionVista() {
         initComponents();
-        cabecera();
         cargarComboBox();
-        cargarDatos(recibirDatosJCAlumnos());
+        cabecera();
+        cargarDatos();
     }
 
     private void cargarComboBox() {
-        jCAlumnos.removeAllItems();
-        ArrayList<Alumno> alumnos = (ArrayList<Alumno>) alumnosData.listarAlumnos();//Funciono casteandolo a ArrayList
-        for (Alumno alumno : alumnos) {
-            jCAlumnos.addItem(alumno.toString());
-        }
+    jCAlumnos.removeAllItems();
+    ArrayList<Alumno> alumnos = (ArrayList<Alumno>) alumnosData.listarAlumnos();
+
+    for (Alumno alumno : alumnos) {
+        // Crea una instancia de AlumnoHijo a partir de la instancia de Alumno
+        AlumnoHijo alumnoHijo = new AlumnoHijo(alumno.getId(), alumno.getDni(), alumno.getApellido(), alumno.getNombre(), alumno.getFechaN(), alumno.isEstado());
+        
+        // Agrega la instancia de AlumnoHijo al JComboBox
+        jCAlumnos.addItem(alumnoHijo);
     }
+}
+
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -221,17 +230,17 @@ public class InscripcionVista extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jCAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCAlumnosActionPerformed
-        cargarDatos(recibirDatosJCAlumnos());
+        cargarDatos();
     }//GEN-LAST:event_jCAlumnosActionPerformed
 
     private void jRMateriasNOInscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRMateriasNOInscriptasActionPerformed
         jRMateriasNOInscriptas.setSelected(true);
-        cargarDatos(recibirDatosJCAlumnos());
+        cargarDatos();
     }//GEN-LAST:event_jRMateriasNOInscriptasActionPerformed
 
     private void jRMateriasInscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRMateriasInscriptasActionPerformed
         jRMateriasInscriptas.setSelected(true);
-        cargarDatos(recibirDatosJCAlumnos());
+        cargarDatos();
     }//GEN-LAST:event_jRMateriasInscriptasActionPerformed
 
     private void jBSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalirActionPerformed
@@ -239,28 +248,35 @@ public class InscripcionVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBSalirActionPerformed
 
     private void jBInscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBInscribirActionPerformed
-        int filaS = jTInscripcion.getSelectedRow();
-        int idM = (int) jTInscripcion.getValueAt(filaS, 0);
-        Materia materia = materiaX.buscarMateria(idM);
-        Alumno alumno = alumnosData.buscarAlumno(recibirDatosJCAlumnos());
-   
-        insc = new Inscripcion(0.0, alumno, materia);
-        System.out.println("inscriipcion " + insc);
-        if (filaS != -1) {
-           inscripcionData.guardarInscripcion(insc);
-           modelo.removeRow(filaS);
-        }else if (filaS == -1) {
-            JOptionPane.showMessageDialog(this, "No ha seleccionado ninguna materia");
+        try {
+            Alumno alumno = (Alumno) jCAlumnos.getSelectedItem();
+            int filaS = jTInscripcion.getSelectedRow();
+            int idM = (int) jTInscripcion.getValueAt(filaS, 0);
+            Materia materia = materiaX.buscarMateria(idM);
+            insc = new Inscripcion(0.0, alumno, materia);
+
+            if (filaS != -1) {
+                System.out.println(filaS);
+                inscripcionData.guardarInscripcion(insc);
+                modelo.removeRow(filaS);
+            } else if (filaS == -1) {
+                JOptionPane.showMessageDialog(this, "No ha seleccionado ninguna materia");
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(MateriaData.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "Error " + ex.getLocalizedMessage());
         }
     }//GEN-LAST:event_jBInscribirActionPerformed
 
     private void jBBorrarInsripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBorrarInsripcionActionPerformed
+        Alumno alumno = (Alumno) jCAlumnos.getSelectedItem();
+        int idA = alumno.getId();
         int filaS = jTInscripcion.getSelectedRow();
+        int idM = (int) jTInscripcion.getValueAt(filaS, 0);
         if (filaS != -1) {
-            int idM = (int) jTInscripcion.getValueAt(filaS, 0);
-            inscripcionData.borrarInscripcionMateriaAlumno(recibirDatosJCAlumnos(), idM);
+            inscripcionData.borrarInscripcionMateriaAlumno(idA, idM);
             modelo.removeRow(filaS);
-        }else if (filaS == -1) {
+        } else if (filaS == -1) {
             JOptionPane.showMessageDialog(this, "No ha seleccionado ninguna materia");
         }
     }//GEN-LAST:event_jBBorrarInsripcionActionPerformed
@@ -271,7 +287,7 @@ public class InscripcionVista extends javax.swing.JInternalFrame {
     private javax.swing.JButton jBBorrarInsripcion;
     private javax.swing.JButton jBInscribir;
     private javax.swing.JButton jBSalir;
-    private javax.swing.JComboBox<String> jCAlumnos;
+    private javax.swing.JComboBox<Alumno> jCAlumnos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -291,19 +307,9 @@ public class InscripcionVista extends javax.swing.JInternalFrame {
         jTInscripcion.setModel(modelo);
     }
 
-    private int recibirDatosJCAlumnos() {
-        int dni = 0;
-        String alumnoSeleccionado = jCAlumnos.getSelectedItem().toString();
-        // Separa la cadena por espacios
-        String[] partes = alumnoSeleccionado.split(" ");
-        // La primera parte debe ser el DNI (suponiendo que la estructura es "DNI Apellido Nombre")
-        String recuperarDni = partes[0];
-        dni = Integer.parseInt(recuperarDni);
-        int id = alumnosData.buscaAlumnoPorDni(dni).getId(); //recupero el id por medio del dni
-        return id;//lo envio como parametro al metodo 'cargarDatos(recibirDatosJCAlumnos)' en el constructor
-    }
-
-    private void cargarDatos(int id) {
+    private void cargarDatos() {
+        Alumno alumno = (Alumno) jCAlumnos.getSelectedItem();
+        int id = alumno.getId();
         modelo.setRowCount(0);
         if (!jRMateriasInscriptas.isSelected() && !jRMateriasNOInscriptas.isSelected()) {
             jRMateriasInscriptas.setSelected(true); //si ningun jRadioButtom esta seleccionado, selecciona jRMateriasInsgresadas

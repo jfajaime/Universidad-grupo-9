@@ -76,7 +76,7 @@ public class AlumnoData {
                 alumno.setNombre(nombre);
                 alumno.setDni(rs.getInt("dni"));
                 alumno.setApellido(rs.getString("apellido"));
-//                alumno.setNombre(rs.getString("nombre"));
+               alumno.setNombre(rs.getString("nombre"));
                 alumno.setFechaN(rs.getDate("fechanac").toLocalDate());
                 alumno.setEstado(true);
 
@@ -201,6 +201,7 @@ public class AlumnoData {
         }
 
     }
+    
     public Alumno buscarApellido(String apellido) {
         Alumno alumno = null;
         String sql = "select idAlumno, dni, apellido, nombre, fechaNac from alumno where apellido = ? and estado = 1";
@@ -247,7 +248,7 @@ public class AlumnoData {
 
             if (rs.next()) {
                 alumno = new Alumno();
-//                alumno.setId(rs.getInt("idAlumno"));
+                alumno.setId(rs.getInt("idAlumno"));
                 alumno.setDni(rs.getInt("dni"));
                 alumno.setApellido(rs.getString("apellido"));
                 alumno.setNombre(rs.getString("nombre"));

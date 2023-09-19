@@ -21,7 +21,7 @@ public class UniversidadGrupo9 {
         Inscripcion insc = new Inscripcion();
 //        a.buscarAlumno(0);//crear alumnos
 //        m.buscarMateria(1);
-//        b.guardarInscripcion(insc);//ver
+        b.guardarInscripcion(insc);//ver
 //        b.obtenerInscripciones();//ver
 //        b.obtenerAlumnosXMateria(1);//terminar
 //        b.obtenerMateriasCursadas(102);

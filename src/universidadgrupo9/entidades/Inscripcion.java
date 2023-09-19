@@ -2,19 +2,20 @@ package universidadgrupo9.entidades;
 
 public class Inscripcion {
     
-    private int id = -1;
+    private int id;
     private double nota;
     private Alumno alumno;
     private Materia materia;
 
     public Inscripcion(double nota, Alumno alumno, Materia materia) {
+        this.id = -1;
         this.nota = nota;
         this.alumno = alumno;
         this.materia = materia;
     }
     
     public Inscripcion(int id, double nota, Alumno alumno, Materia materia) {
-        this.id = id;
+        this.id = -1;
         this.nota = nota;
         this.alumno = alumno;
         this.materia = materia;
@@ -22,6 +23,7 @@ public class Inscripcion {
 
 
     public Inscripcion() {
+        this.id = -1;
     }
 
     
