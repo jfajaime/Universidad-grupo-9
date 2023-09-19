@@ -242,7 +242,7 @@ public class InscripcionVista extends javax.swing.JInternalFrame {
         int filaS = jTInscripcion.getSelectedRow();
         int idM = (int) jTInscripcion.getValueAt(filaS, 0);
         Materia materia = materiaX.buscarMateria(idM);
-        Alumno alumno = alumnosData.buscarAlumno(recibirDatosJCAlumnos());
+        Alumno alumno = alumnosData.buscaAlumnoPorDni(recibirDatosJCAlumnos());
    
         insc = new Inscripcion(0.0, alumno, materia);
         System.out.println("inscriipcion " + insc);
