@@ -26,18 +26,23 @@ public class InscripcionData {
         String sql = "INSERT INTO inscripcion (nota, idAlumno, idMateria) VALUES (?, ?, ?) ";
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            
             ps.setDouble(1, insc.getNota());
             ps.setInt(2, insc.getAlumno().getId());
             ps.setInt(3, insc.getMateria().getId());
+            ps.executeUpdate();
+            System.out.println("inscripcion " + insc);
 
             ResultSet rs = ps.getGeneratedKeys();
+            
             if (rs.next()) {
+            System.out.println("inscripcion 2" + insc);
                 insc.setId(rs.getInt(1));
                 JOptionPane.showMessageDialog(null, "Alumno inscripto con exito.");
             }
             ps.close();
             rs.close();
-        } catch (SQLException | NullPointerException ex) {
+        } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Inscripcion fallida\n" + ex.getMessage());
         }
     }
@@ -147,15 +152,12 @@ public class InscripcionData {
 
     public List<Materia> obtenerMateriasNOCursadas(int id) {
         List<Materia> materiasNoCursadas = new ArrayList<>();
-
-        // Consulta SQL para obtener las materias no cursadas por el alumno
         String sql = "SELECT m.* "
                 + "FROM materia m "
                 + "WHERE m.idMateria "
                 + "NOT IN (SELECT i.idMateria "
                 + "FROM inscripcion i "
                 + "WHERE i.idAlumno = ?)";
-
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);

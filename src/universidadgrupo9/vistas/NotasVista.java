@@ -1,30 +1,34 @@
 package universidadgrupo9.vistas;
 
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import universidadgrupo9.accesoADatos.AlumnoData;
+import universidadgrupo9.accesoADatos.InscripcionData;
 import universidadgrupo9.entidades.Alumno;
+import universidadgrupo9.entidades.AlumnoHijo;
+import universidadgrupo9.entidades.Inscripcion;
+import universidadgrupo9.entidades.Materia;
 
 public class NotasVista extends javax.swing.JInternalFrame {
     private DefaultTableModel modelo = new DefaultTableModel();
+    AlumnoData alumnosData = new AlumnoData();
+    InscripcionData inscripcionData = new InscripcionData();
+    Inscripcion inscripcion = new Inscripcion();
 
     public NotasVista() {
         initComponents();
         cabecera();
         cargarComboBox();
+        cargarDatos();
     }
     
     private void cargarComboBox() {
-
-        AlumnoData alumnosData = new AlumnoData();
-
-        jCNotas.removeAllItems();
-
-        ArrayList<Alumno> alumnos = (ArrayList<Alumno>) alumnosData.listarAlumnos();//Funciono casteandolo a ArrayList
-
-        for (Alumno alumno : alumnos) {
-            jCNotas.addItem(alumno.toString());
-        }
+        ArrayList<Alumno> alumnos = (ArrayList<Alumno>) alumnosData.listarAlumnos();
+    for (Alumno alumno : alumnos) {
+        AlumnoHijo alumnoHijo = new AlumnoHijo(alumno.getId(), alumno.getDni(), alumno.getApellido(), alumno.getNombre(), alumno.getFechaN(), alumno.isEstado());
+        jCNotas.addItem(alumnoHijo);
+    }
     }
     
     @SuppressWarnings("unchecked")
@@ -36,7 +40,7 @@ public class NotasVista extends javax.swing.JInternalFrame {
         jCNotas = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTNotas = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        jBguardar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
         setClosable(true);
@@ -48,10 +52,14 @@ public class NotasVista extends javax.swing.JInternalFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jLabel2.setText("Seleccione un Alumno");
 
-        jCNotas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jCNotas.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jCNotasItemStateChanged(evt);
+            }
+        });
+        jCNotas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCNotasActionPerformed(evt);
             }
         });
 
@@ -68,37 +76,45 @@ public class NotasVista extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jTNotas);
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        jButton1.setText("Guardar");
+        jBguardar.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        jBguardar.setText("Guardar");
+        jBguardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBguardarActionPerformed(evt);
+            }
+        });
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jButton2.setText("Salir");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(jBguardar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jCNotas, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(jCNotas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addGap(36, 36, 36))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(127, 127, 127)
+                .addGap(155, 155, 155)
                 .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(155, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -110,10 +126,10 @@ public class NotasVista extends javax.swing.JInternalFrame {
                     .addComponent(jLabel2)
                     .addComponent(jCNotas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(jBguardar)
                     .addComponent(jButton2))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
@@ -124,11 +140,23 @@ public class NotasVista extends javax.swing.JInternalFrame {
     private void jCNotasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCNotasItemStateChanged
     }//GEN-LAST:event_jCNotasItemStateChanged
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jCNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCNotasActionPerformed
+        cargarDatos();
+    }//GEN-LAST:event_jCNotasActionPerformed
+
+    private void jBguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBguardarActionPerformed
+        //ver
+    }//GEN-LAST:event_jBguardarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jBguardar;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jCNotas;
+    private javax.swing.JComboBox<Alumno> jCNotas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -139,5 +167,14 @@ public class NotasVista extends javax.swing.JInternalFrame {
         modelo.addColumn("Nombre");
         modelo.addColumn("Nota");
         jTNotas.setModel(modelo);
+    }
+    private void cargarDatos() {
+        Alumno alumno = (Alumno) jCNotas.getSelectedItem();
+        int id = alumno.getId();
+        modelo.setRowCount(0);
+        List<Materia> materiasCursadas = inscripcionData.obtenerMateriasCursadas(id);
+            for (Materia materia : materiasCursadas) {
+                modelo.addRow(new Object[]{materia.getId(), materia.getNombre(), inscripcion.getNota()});
+            }
     }
 }
