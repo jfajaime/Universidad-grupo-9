@@ -59,11 +59,6 @@ public class UniversidadGrupo9MenuVista extends javax.swing.JFrame {
 
         jMenu2.setText("Materias");
         jMenu2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jMenu2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu2ActionPerformed(evt);
-            }
-        });
 
         jMenuItem2.setText("Formulario de Materia");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
@@ -140,6 +135,7 @@ public class UniversidadGrupo9MenuVista extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -186,11 +182,6 @@ public class UniversidadGrupo9MenuVista extends javax.swing.JFrame {
         escritorio.add(bAxM);
         escritorio.moveToFront(bAxM);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
-
-    private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
-        
-        
-    }//GEN-LAST:event_jMenu2ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
            

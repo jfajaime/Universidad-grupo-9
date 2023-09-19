@@ -121,12 +121,6 @@ public class AlumnosVista extends javax.swing.JInternalFrame {
             }
         });
 
-        jTFidalumno.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTFidalumnoActionPerformed(evt);
-            }
-        });
-
         jBBuscarXid.setText("Buscar");
         jBBuscarXid.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -398,10 +392,6 @@ public class AlumnosVista extends javax.swing.JInternalFrame {
         }
 
     }//GEN-LAST:event_jBBuscarxApellidoActionPerformed
-
-    private void jTFidalumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFidalumnoActionPerformed
-     
-    }//GEN-LAST:event_jTFidalumnoActionPerformed
 
     private void jBBuscarXidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarXidActionPerformed
         try {
