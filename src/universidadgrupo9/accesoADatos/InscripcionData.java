@@ -152,15 +152,12 @@ public class InscripcionData {
 
     public List<Materia> obtenerMateriasNOCursadas(int id) {
         List<Materia> materiasNoCursadas = new ArrayList<>();
-
-        // Consulta SQL para obtener las materias no cursadas por el alumno
         String sql = "SELECT m.* "
                 + "FROM materia m "
                 + "WHERE m.idMateria "
                 + "NOT IN (SELECT i.idMateria "
                 + "FROM inscripcion i "
                 + "WHERE i.idAlumno = ?)";
-
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);

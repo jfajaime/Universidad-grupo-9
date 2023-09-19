@@ -175,7 +175,7 @@ public class MateriaData {
 
         String sql = "SELECT nombre FROM materia where nombre=?";
         
-        String igual = null;
+        String igual = "";
         
         try {
             

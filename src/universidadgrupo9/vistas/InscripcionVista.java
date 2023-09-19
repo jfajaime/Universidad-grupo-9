@@ -2,8 +2,6 @@ package universidadgrupo9.vistas;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import universidadgrupo9.accesoADatos.AlumnoData;
@@ -31,14 +29,10 @@ public class InscripcionVista extends javax.swing.JInternalFrame {
     }
 
     private void cargarComboBox() {
-    jCAlumnos.removeAllItems();
+    //jCAlumnos.removeAllItems();
     ArrayList<Alumno> alumnos = (ArrayList<Alumno>) alumnosData.listarAlumnos();
-
     for (Alumno alumno : alumnos) {
-        // Crea una instancia de AlumnoHijo a partir de la instancia de Alumno
         AlumnoHijo alumnoHijo = new AlumnoHijo(alumno.getId(), alumno.getDni(), alumno.getApellido(), alumno.getNombre(), alumno.getFechaN(), alumno.isEstado());
-        
-        // Agrega la instancia de AlumnoHijo al JComboBox
         jCAlumnos.addItem(alumnoHijo);
     }
 }
@@ -263,7 +257,7 @@ public class InscripcionVista extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(this, "No ha seleccionado ninguna materia");
             }
         } catch (Exception ex) {
-            Logger.getLogger(MateriaData.class.getName()).log(Level.SEVERE, null, ex);
+
             JOptionPane.showMessageDialog(this, "Error " + ex.getLocalizedMessage());
         }
     }//GEN-LAST:event_jBInscribirActionPerformed
