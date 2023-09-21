@@ -186,14 +186,12 @@ public class UniversidadGrupo9MenuVista extends javax.swing.JFrame {
         escritorio.add(bAxM);
         escritorio.moveToFront(bAxM);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
-
     private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
         
         
     }//GEN-LAST:event_jMenu2ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-           
         escritorio.removeAll();
         escritorio.repaint();
         ListadoDeMaterias LxM=new ListadoDeMaterias();

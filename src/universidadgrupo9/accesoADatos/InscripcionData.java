@@ -31,12 +31,9 @@ public class InscripcionData {
             ps.setInt(2, insc.getAlumno().getId());
             ps.setInt(3, insc.getMateria().getId());
             ps.executeUpdate();
-            System.out.println("inscripcion " + insc);
-
             ResultSet rs = ps.getGeneratedKeys();
-            
+ 
             if (rs.next()) {
-            System.out.println("inscripcion 2" + insc);
                 insc.setId(rs.getInt(1));
                 JOptionPane.showMessageDialog(null, "Alumno inscripto con exito.");
             }
@@ -114,7 +111,6 @@ public class InscripcionData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Inscripcion: " + ex.getMessage());
         }
-        System.out.println(inscripciones);
         return inscripciones;
     }
 
@@ -146,7 +142,6 @@ public class InscripcionData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Materia: " + ex.getMessage());
         }
-            System.out.println(materiasCursadas + "\n");
             return materiasCursadas;
     }
 
@@ -201,16 +196,17 @@ public class InscripcionData {
         }
     }
 
-    public void actualizarNota(int idAlumno, double nota) {
-        String sql = "UPDATE inscripcion SET nota = ? WHERE idAlumno = ?";
+    public void actualizarNota(int idAlumno, int idMateria, double nota) {
+        String sql = "UPDATE inscripcion SET nota = ? WHERE idAlumno = ? AND idMateria = ?";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setDouble(1, nota);
             ps.setInt(2, idAlumno);
+            ps.setInt(3, idMateria);
             int filasActualizadas = ps.executeUpdate();
 
-            if (filasActualizadas > 0) {
+            if (filasActualizadas > 0 && filasActualizadas < 11) {
                 JOptionPane.showMessageDialog(null, "Nota actualizada con éxito.");
             } else {
                 JOptionPane.showMessageDialog(null, "No se encontraron inscripciones para actualizar la nota.");

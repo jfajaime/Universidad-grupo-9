@@ -149,7 +149,11 @@ public class NotasVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jCNotasActionPerformed
 
     private void jBguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBguardarActionPerformed
-        //ver
+        Alumno alumno = (Alumno) jCNotas.getSelectedItem();
+        Materia materia = new Materia();
+        int id = alumno.getId();
+      //  inscripcionData.actualizarNota(id , );
+        cargarDatos();
     }//GEN-LAST:event_jBguardarActionPerformed
 
 
@@ -171,9 +175,11 @@ public class NotasVista extends javax.swing.JInternalFrame {
     private void cargarDatos() {
         Alumno alumno = (Alumno) jCNotas.getSelectedItem();
         int id = alumno.getId();
-        modelo.setRowCount(0);
+        
         List<Materia> materiasCursadas = inscripcionData.obtenerMateriasCursadas(id);
             for (Materia materia : materiasCursadas) {
+                System.out.println("inscripcion " + inscripcion.toString());
+                
                 modelo.addRow(new Object[]{materia.getId(), materia.getNombre(), inscripcion.getNota()});
             }
     }

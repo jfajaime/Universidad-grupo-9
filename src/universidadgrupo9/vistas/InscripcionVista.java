@@ -29,7 +29,7 @@ public class InscripcionVista extends javax.swing.JInternalFrame {
     }
 
     private void cargarComboBox() {
-    //jCAlumnos.removeAllItems();
+    jCAlumnos.removeAllItems();
     ArrayList<Alumno> alumnos = (ArrayList<Alumno>) alumnosData.listarAlumnos();
     for (Alumno alumno : alumnos) {
         AlumnoHijo alumnoHijo = new AlumnoHijo(alumno.getId(), alumno.getDni(), alumno.getApellido(), alumno.getNombre(), alumno.getFechaN(), alumno.isEstado());
@@ -302,7 +302,7 @@ public class InscripcionVista extends javax.swing.JInternalFrame {
     }
 
     private void cargarDatos() {
-        Alumno alumno = (Alumno) jCAlumnos.getSelectedItem();
+        Alumno alumno = (Alumno) jCAlumnos.getSelectedItem();//selecciona el alumno en el comboBox
         int id = alumno.getId();
         modelo.setRowCount(0);
         if (!jRMateriasInscriptas.isSelected() && !jRMateriasNOInscriptas.isSelected()) {
@@ -311,16 +311,16 @@ public class InscripcionVista extends javax.swing.JInternalFrame {
         if (jRMateriasInscriptas.isSelected()) {
             jBBorrarInsripcion.setEnabled(true);//habilita jBBorrarInscripcion
             jBInscribir.setEnabled(false);//deshabilita jBInscripcion
-            List<Materia> materiasCursadas = inscripcionData.obtenerMateriasCursadas(id);
+            List<Materia> materiasCursadas = inscripcionData.obtenerMateriasCursadas(id);//Instacia de lista Materia
             for (Materia materia : materiasCursadas) {
-                modelo.addRow(new Object[]{materia.getId(), materia.getNombre(), materia.getAnio()});
+                modelo.addRow(new Object[]{materia.getId(), materia.getNombre(), materia.getAnio()});//Devuelve las materias una x una dentro de la tabla
             }
         } else if (jRMateriasNOInscriptas.isSelected()) {
             jBInscribir.setEnabled(true);//habilita jBInsscripcion
             jBBorrarInsripcion.setEnabled(false);//deshabilita jBBorrarInscripcion
             List<Materia> materiasNoCursadas = inscripcionData.obtenerMateriasNOCursadas(id);
             for (Materia materia : materiasNoCursadas) {
-                modelo.addRow(new Object[]{materia.getId(), materia.getNombre(), materia.getAnio()});
+                modelo.addRow(new Object[]{materia.getId(), materia.getNombre(), materia.getAnio()});//Devuelve las materias una x una dentro de la tabla
             }
         }
     }
