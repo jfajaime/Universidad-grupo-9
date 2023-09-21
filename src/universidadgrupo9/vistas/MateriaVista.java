@@ -195,6 +195,10 @@ public class MateriaVista extends javax.swing.JInternalFrame {
 
             if (mb == null) {
                 JOptionPane.showMessageDialog(this, "No hay materia con ese codigo");
+                jTFCodigo.setText("");
+                jTFNombre.setText("");
+                jTFAnioMateria.setText("");
+                jRadioBEstado.setSelected(false);
 
             } else {
                 jTFCodigo.setText(String.valueOf(mb.getId()));
