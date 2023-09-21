@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import universidadgrupo9.entidades.Materia;
 
@@ -20,7 +22,7 @@ public class MateriaData {
     }
 
     public void guardarMateria(Materia mat) {
-
+ Icon icono=new ImageIcon(getClass().getResource("/universidadgrupo9/imagenes/materia.png"));
         String result=compareMat(mat.getNombre());
         System.out.println(result);
         System.out.println(mat.getNombre());
@@ -50,7 +52,7 @@ public class MateriaData {
                 
                 ps.close();
                 rs.close();
-                JOptionPane.showMessageDialog(null, "Cargada con exito");
+              JOptionPane.showMessageDialog(null, "Materia añadida con exito.", "Mensaje",JOptionPane.PLAIN_MESSAGE, icono);
 
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "Error de conexion -" + ex.getMessage());

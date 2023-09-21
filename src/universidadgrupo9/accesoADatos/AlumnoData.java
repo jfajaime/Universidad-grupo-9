@@ -13,6 +13,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import universidadgrupo9.entidades.Alumno;
 
@@ -32,6 +34,7 @@ public class AlumnoData {
     public void guardarAlumno(Alumno alumno) {
 
         String sql = "insert into alumno (dni, apellido, nombre, fechaNac, estado) values (?, ?, ?, ?, ?)";
+       Icon icono=new ImageIcon(getClass().getResource("/universidadgrupo9/imagenes/alumno.png"));
         try {
             
             if (alumno !=null) {
@@ -52,9 +55,9 @@ public class AlumnoData {
             ps.close();
             rs.close();
             }
-
-            JOptionPane.showMessageDialog(null, "Alumno añadido con exito.");
-
+            
+           JOptionPane.showMessageDialog(null, "Alumno añadido con exito.", "Mensaje",JOptionPane.PLAIN_MESSAGE, icono);
+        
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Alumno " + ex.getMessage());
         }
