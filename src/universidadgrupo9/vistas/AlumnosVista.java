@@ -106,6 +106,11 @@ public class AlumnosVista extends javax.swing.JInternalFrame {
 
         jBSalir.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jBSalir.setText("Salir");
+        jBSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBSalirActionPerformed(evt);
+            }
+        });
 
         jBBuscarxApellido.setText("Buscar");
         jBBuscarxApellido.addActionListener(new java.awt.event.ActionListener() {
@@ -424,6 +429,11 @@ public class AlumnosVista extends javax.swing.JInternalFrame {
         }
         
     }//GEN-LAST:event_jBBuscarXidActionPerformed
+
+    private void jBSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalirActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jBSalirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
