@@ -1,4 +1,4 @@
- /*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -34,30 +34,30 @@ public class AlumnoData {
     public void guardarAlumno(Alumno alumno) {
 
         String sql = "insert into alumno (dni, apellido, nombre, fechaNac, estado) values (?, ?, ?, ?, ?)";
-       Icon icono=new ImageIcon(getClass().getResource("/universidadgrupo9/imagenes/alumno.png"));
+        Icon icono = new ImageIcon(getClass().getResource("/universidadgrupo9/imagenes/alumno.png"));
         try {
-            
-            if (alumno !=null) {
-                
-           PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, alumno.getDni());
-            ps.setString(2,alumno.getApellido());
-            ps.setString(3, alumno.getNombre());
-            ps.setDate(4, Date.valueOf(alumno.getFechaN()));
-            ps.setBoolean(5, alumno.isEstado());
-            ps.executeUpdate();
-            ResultSet rs = ps.getGeneratedKeys();
-            if (rs.next()) {
-                alumno.setId(rs.getInt(1));
-            } else {
-                System.out.println("No se pudo recuperar el Id");
+
+            if (alumno != null) {
+
+                PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                ps.setInt(1, alumno.getDni());
+                ps.setString(2, alumno.getApellido());
+                ps.setString(3, alumno.getNombre());
+                ps.setDate(4, Date.valueOf(alumno.getFechaN()));
+                ps.setBoolean(5, alumno.isEstado());
+                ps.executeUpdate();
+                ResultSet rs = ps.getGeneratedKeys();
+                if (rs.next()) {
+                    alumno.setId(rs.getInt(1));
+                } else {
+                    System.out.println("No se pudo recuperar el Id");
+                }
+                ps.close();
+                rs.close();
             }
-            ps.close();
-            rs.close();
-            }
-            
-           JOptionPane.showMessageDialog(null, "Alumno añadido con exito.", "Mensaje",JOptionPane.PLAIN_MESSAGE, icono);
-        
+
+            JOptionPane.showMessageDialog(null, "Alumno añadido con exito.", "Mensaje", JOptionPane.PLAIN_MESSAGE, icono);
+
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Alumno " + ex.getMessage());
         }
@@ -79,7 +79,7 @@ public class AlumnoData {
                 alumno.setNombre(nombre);
                 alumno.setDni(rs.getInt("dni"));
                 alumno.setApellido(rs.getString("apellido"));
-               alumno.setNombre(rs.getString("nombre"));
+                alumno.setNombre(rs.getString("nombre"));
                 alumno.setFechaN(rs.getDate("fechanac").toLocalDate());
                 alumno.setEstado(true);
 
@@ -163,6 +163,7 @@ public class AlumnoData {
 
     public void modificarAlumno(Alumno alumno) {
 
+        Icon icono = new ImageIcon(getClass().getResource("/universidadgrupo9/imagenes/alumno.png"));
         String sql = "UPDATE alumno SET dni = ? , apellido = ?, nombre = ?, fechaNacimiento = ? WHERE idAlumno = ?";
         PreparedStatement ps = null;
 
@@ -176,7 +177,8 @@ public class AlumnoData {
             int exito = ps.executeUpdate();
 
             if (exito == 1) {
-                JOptionPane.showMessageDialog(null, "Modificado Exitosamente.");
+                JOptionPane.showMessageDialog(null, "Alumno modificao con exito.", "Mensaje", JOptionPane.PLAIN_MESSAGE, icono);
+
             } else {
                 JOptionPane.showMessageDialog(null, "El alumno no existe");
             }
@@ -187,6 +189,7 @@ public class AlumnoData {
     }
 
     public void eliminarAlumno(int dni) {
+        Icon icono = new ImageIcon(getClass().getResource("/universidadgrupo9/imagenes/alumno.png"));
 
         try {
             String sql = "UPDATE alumno SET estado = 0 WHERE dni = ? ";
@@ -195,7 +198,8 @@ public class AlumnoData {
             int fila = ps.executeUpdate();
 
             if (fila == 1) {
-                JOptionPane.showMessageDialog(null, " Se eliminó el alumno.");
+                JOptionPane.showMessageDialog(null, " Se eliminó el alumno.", "Mensaje", JOptionPane.PLAIN_MESSAGE, icono);
+
             }
             ps.close();
 
@@ -204,7 +208,7 @@ public class AlumnoData {
         }
 
     }
-    
+
     public Alumno buscarApellido(String apellido) {
         Alumno alumno = null;
         String sql = "select idAlumno, dni, apellido, nombre, fechaNac from alumno where apellido = ? and estado = 1";
@@ -236,9 +240,9 @@ public class AlumnoData {
 
         return alumno;
     }
-    
-    public Alumno buscarXidAlumno(int id){
-            Alumno alumno = null;
+
+    public Alumno buscarXidAlumno(int id) {
+        Alumno alumno = null;
 
         String sql = " select  dni, apellido, nombre, fechanac from alumno where idAlumno = ?  and estado = 1 ";
 

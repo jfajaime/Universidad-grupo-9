@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import universidadgrupo9.entidades.Alumno;
 import universidadgrupo9.entidades.Inscripcion;
@@ -23,10 +25,12 @@ public class InscripcionData {
     }
 
     public void guardarInscripcion(Inscripcion insc) {
+
+        Icon icono = new ImageIcon(getClass().getResource("/universidadgrupo9/imagenes/inscripcion.png"));
         String sql = "INSERT INTO inscripcion (nota, idAlumno, idMateria) VALUES (?, ?, ?) ";
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            
+
             ps.setDouble(1, insc.getNota());
             ps.setInt(2, insc.getAlumno().getId());
             ps.setInt(3, insc.getMateria().getId());
@@ -34,11 +38,11 @@ public class InscripcionData {
             System.out.println("inscripcion " + insc);
 
             ResultSet rs = ps.getGeneratedKeys();
-            
+
             if (rs.next()) {
-            System.out.println("inscripcion 2" + insc);
+                System.out.println("inscripcion 2" + insc);
                 insc.setId(rs.getInt(1));
-                JOptionPane.showMessageDialog(null, "Alumno inscripto con exito.");
+                JOptionPane.showMessageDialog(null, "Alumno añadido con exito.", "Mensaje", JOptionPane.PLAIN_MESSAGE, icono);
             }
             ps.close();
             rs.close();
@@ -138,7 +142,7 @@ public class InscripcionData {
                 materia.setId(rs.getInt("idMateria"));
                 materia.setNombre(rs.getString("nombre"));
                 materia.setAnio(rs.getInt("Año"));
-                
+
                 materiasCursadas.add(materia);
             }
             ps.close();
@@ -146,8 +150,8 @@ public class InscripcionData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Materia: " + ex.getMessage());
         }
-            System.out.println(materiasCursadas + "\n");
-            return materiasCursadas;
+        System.out.println(materiasCursadas + "\n");
+        return materiasCursadas;
     }
 
     public List<Materia> obtenerMateriasNOCursadas(int id) {
@@ -181,6 +185,8 @@ public class InscripcionData {
     }
 
     public void borrarInscripcionMateriaAlumno(int idAlumno, int idMateria) {
+
+        Icon icono = new ImageIcon(getClass().getResource("/universidadgrupo9/imagenes/inscripcion.png"));
         String sql = "DELETE FROM inscripcion WHERE idAlumno = ? AND idMateria = ?";
 
         try {
@@ -190,7 +196,8 @@ public class InscripcionData {
             int filasBorradas = ps.executeUpdate();
 
             if (filasBorradas > 0) {
-                JOptionPane.showMessageDialog(null, "Inscripción eliminada con éxito.");
+                JOptionPane.showMessageDialog(null, "Inscripción eliminada con éxito.", "Mensaje", JOptionPane.PLAIN_MESSAGE, icono);
+
             } else {
                 JOptionPane.showMessageDialog(null, "No se encontró la inscripción a borrar.");
             }
@@ -202,6 +209,8 @@ public class InscripcionData {
     }
 
     public void actualizarNota(int idAlumno, double nota) {
+        
+         Icon icono = new ImageIcon(getClass().getResource("/universidadgrupo9/imagenes/inscripcion.png"));
         String sql = "UPDATE inscripcion SET nota = ? WHERE idAlumno = ?";
 
         try {
@@ -211,7 +220,8 @@ public class InscripcionData {
             int filasActualizadas = ps.executeUpdate();
 
             if (filasActualizadas > 0) {
-                JOptionPane.showMessageDialog(null, "Nota actualizada con éxito.");
+                 JOptionPane.showMessageDialog(null, "Nota actualizada con éxito.", "Mensaje", JOptionPane.PLAIN_MESSAGE, icono);
+                
             } else {
                 JOptionPane.showMessageDialog(null, "No se encontraron inscripciones para actualizar la nota.");
             }
