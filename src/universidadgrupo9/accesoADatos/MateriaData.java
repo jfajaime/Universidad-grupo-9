@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import universidadgrupo9.entidades.Materia;
 
@@ -21,16 +23,17 @@ public class MateriaData {
 
     public void guardarMateria(Materia mat) {
 
-        String result=compareMat(mat.getNombre());
+        Icon icono = new ImageIcon(getClass().getResource("/universidadgrupo9/imagenes/materia.png"));
+        String result = compareMat(mat.getNombre());
         System.out.println(result);
         System.out.println(mat.getNombre());
-      
-        if (result.equalsIgnoreCase(mat.getNombre())){
+
+        if (result.equalsIgnoreCase(mat.getNombre())) {
 
             JOptionPane.showMessageDialog(null, "La materia ya esta cargada");
 
         } else {
-            
+
             String query = "INSERT INTO materia(nombre,año,estado) VALUES (?,?,?) ";
 
             try {
@@ -41,21 +44,21 @@ public class MateriaData {
                 ps.setBoolean(3, mat.isEstado());
                 ps.executeUpdate();
                 ResultSet rs = ps.getGeneratedKeys();
-                
+
                 if (rs.next()) {
                     mat.setId(rs.getInt(1));
                 } else {
                     JOptionPane.showMessageDialog(null, "No se pudo recuperar el Id");
                 }
-                
+
                 ps.close();
                 rs.close();
-                JOptionPane.showMessageDialog(null, "Cargada con exito");
+                JOptionPane.showMessageDialog(null, "Materia añadida con exito.", "Mensaje", JOptionPane.PLAIN_MESSAGE, icono);
 
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "Error de conexion -" + ex.getMessage());
             }
-            
+
         }
     }
 
@@ -91,6 +94,7 @@ public class MateriaData {
 
     public void modificarMateria(Materia mat) {
 
+        Icon icono = new ImageIcon(getClass().getResource("/universidadgrupo9/imagenes/materia.png"));
         String query = "UPDATE materia SET nombre = ?, año = ?, estado = ? WHERE idMateria = ?";
 
         try {
@@ -101,7 +105,7 @@ public class MateriaData {
             ps.setInt(4, mat.getId());
             int mod = ps.executeUpdate();
             if (mod == 1) {
-                JOptionPane.showMessageDialog(null, "Actualizacion exitosa");
+                JOptionPane.showMessageDialog(null, "Materia actualizada.", "Mensaje", JOptionPane.PLAIN_MESSAGE, icono);
 
             } else {
                 JOptionPane.showMessageDialog(null, "Error al actualizar ");
@@ -117,7 +121,7 @@ public class MateriaData {
     public void eliminarMateria(int id) {
 
         String query = "UPDATE materia SET estado = 0 WHERE idMateria = ?";
-
+        Icon icono = new ImageIcon(getClass().getResource("/universidadgrupo9/imagenes/materia.png"));
         try {
 
             PreparedStatement ps = con.prepareStatement(query);
@@ -126,7 +130,7 @@ public class MateriaData {
             int mod = ps.executeUpdate();
 
             if (mod == 1) {
-                JOptionPane.showMessageDialog(null, "Borrado exitosa");
+                JOptionPane.showMessageDialog(null, "Materia borrada.", "Mensaje", JOptionPane.PLAIN_MESSAGE, icono);
 
             } else {
                 JOptionPane.showMessageDialog(null, "El codigo de la materia no existe");
@@ -174,19 +178,19 @@ public class MateriaData {
     private String compareMat(String nombre) {
 
         String sql = "SELECT nombre FROM materia where nombre=?";
-        
-        String igual = "";
-        
-        try {
-            
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1,nombre);
-            ResultSet rs = ps.executeQuery();
-            
-            if(rs.next()) {
 
-                igual=rs.getString("nombre");
-                
+        String igual = "";
+
+        try {
+
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, nombre);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+
+                igual = rs.getString("nombre");
+
             }
             ps.close();
             rs.close();
