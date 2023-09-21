@@ -1,11 +1,33 @@
 package universidadgrupo9.vistas;
 
+import java.awt.Graphics;
+import javax.swing.ImageIcon;
+import javax.swing.JDesktopPane;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 public class UniversidadGrupo9MenuVista extends javax.swing.JFrame {
 
     public UniversidadGrupo9MenuVista() {
         initComponents();
-    }
+               
+        JDesktopPane escritorio = new JDesktopPane() {
+            @Override
+            public void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                ImageIcon backgroundImage = new ImageIcon("C:\\Users\\jfaja\\OneDrive\\Documentos\\GitHub\\universidadGrupo9_1\\src\\universidadgrupo9\\imagenes\\fondo_logo.jpg");
+                g.drawImage(backgroundImage.getImage(), 0, 0, getWidth(), getHeight(), this);
+            }
+        };
 
+        setContentPane(escritorio);
+        setSize(800, 600);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
+
+    
+    }
+            
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -141,6 +163,19 @@ public class UniversidadGrupo9MenuVista extends javax.swing.JFrame {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         escritorio.removeAll();
         escritorio.repaint();
+        JDesktopPane escritorio = new JDesktopPane() {
+            @Override
+            public void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                ImageIcon backgroundImage = new ImageIcon("C:\\Users\\jfaja\\OneDrive\\Documentos\\GitHub\\universidadGrupo9_1\\src\\universidadgrupo9\\imagenes\\fondo_logo.jpg");
+                g.drawImage(backgroundImage.getImage(), 0, 0, getWidth(), getHeight(), this);
+            }
+        };
+
+        setContentPane(escritorio);
+        setSize(800, 600);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
         AlumnosVista bxDni=new AlumnosVista();
         bxDni.setVisible(true);
         escritorio.add(bxDni);
@@ -150,6 +185,19 @@ public class UniversidadGrupo9MenuVista extends javax.swing.JFrame {
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         escritorio.removeAll();
         escritorio.repaint();
+        JDesktopPane escritorio = new JDesktopPane() {
+            @Override
+            public void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                ImageIcon backgroundImage = new ImageIcon("C:\\Users\\jfaja\\OneDrive\\Documentos\\GitHub\\universidadGrupo9_1\\src\\universidadgrupo9\\imagenes\\fondo_logo.jpg");
+                g.drawImage(backgroundImage.getImage(), 0, 0, getWidth(), getHeight(), this);
+            }
+        };
+
+        setContentPane(escritorio);
+        setSize(800, 600);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
         MateriaVista bxM=new MateriaVista();
         bxM.setVisible(true);
         escritorio.add(bxM);
@@ -159,6 +207,19 @@ public class UniversidadGrupo9MenuVista extends javax.swing.JFrame {
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         escritorio.removeAll();
         escritorio.repaint();
+        JDesktopPane escritorio = new JDesktopPane() {
+            @Override
+            public void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                ImageIcon backgroundImage = new ImageIcon("C:\\Users\\jfaja\\OneDrive\\Documentos\\GitHub\\universidadGrupo9_1\\src\\universidadgrupo9\\imagenes\\fondo_logo.jpg");
+                g.drawImage(backgroundImage.getImage(), 0, 0, getWidth(), getHeight(), this);
+            }
+        };
+
+        setContentPane(escritorio);
+        setSize(800, 600);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
         InscripcionVista bxI=new InscripcionVista();
         bxI.setVisible(true);
         escritorio.add(bxI);
@@ -168,6 +229,19 @@ public class UniversidadGrupo9MenuVista extends javax.swing.JFrame {
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         escritorio.removeAll();
         escritorio.repaint();
+        JDesktopPane escritorio = new JDesktopPane() {
+            @Override
+            public void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                ImageIcon backgroundImage = new ImageIcon("C:\\Users\\jfaja\\OneDrive\\Documentos\\GitHub\\universidadGrupo9_1\\src\\universidadgrupo9\\imagenes\\fondo_logo.jpg");
+                g.drawImage(backgroundImage.getImage(), 0, 0, getWidth(), getHeight(), this);
+            }
+        };
+
+        setContentPane(escritorio);
+        setSize(800, 600);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
         NotasVista bxN=new NotasVista();
         bxN.setVisible(true);
         escritorio.add(bxN);
@@ -177,6 +251,19 @@ public class UniversidadGrupo9MenuVista extends javax.swing.JFrame {
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         escritorio.removeAll();
         escritorio.repaint();
+        JDesktopPane escritorio = new JDesktopPane() {
+            @Override
+            public void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                ImageIcon backgroundImage = new ImageIcon("C:\\Users\\jfaja\\OneDrive\\Documentos\\GitHub\\universidadGrupo9_1\\src\\universidadgrupo9\\imagenes\\fondo_logo.jpg");
+                g.drawImage(backgroundImage.getImage(), 0, 0, getWidth(), getHeight(), this);
+            }
+        };
+
+        setContentPane(escritorio);
+        setSize(800, 600);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
         AlumnoPorMateriaVista bAxM=new AlumnoPorMateriaVista();
         bAxM.setVisible(true);
         escritorio.add(bAxM);
@@ -187,6 +274,19 @@ public class UniversidadGrupo9MenuVista extends javax.swing.JFrame {
            
         escritorio.removeAll();
         escritorio.repaint();
+        JDesktopPane escritorio = new JDesktopPane() {
+            @Override
+            public void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                ImageIcon backgroundImage = new ImageIcon("C:\\Users\\jfaja\\OneDrive\\Documentos\\GitHub\\universidadGrupo9_1\\src\\universidadgrupo9\\imagenes\\fondo_logo.jpg");
+                g.drawImage(backgroundImage.getImage(), 0, 0, getWidth(), getHeight(), this);
+            }
+        };
+
+        setContentPane(escritorio);
+        setSize(800, 600);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
         ListadoDeMaterias LxM=new ListadoDeMaterias();
         LxM.setVisible(true);
         escritorio.add(LxM);
@@ -194,7 +294,7 @@ public class UniversidadGrupo9MenuVista extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenu5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu5ActionPerformed
-
+        JOptionPane.showMessageDialog(this,"Desea Salir");
         System.exit(0);
     }//GEN-LAST:event_jMenu5ActionPerformed
 
