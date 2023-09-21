@@ -49,6 +49,7 @@ public class UniversidadGrupo9MenuVista extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Universidad ULP grupo 9 Gestion de Alumnos");
+        setPreferredSize(new java.awt.Dimension(1200, 800));
 
         escritorio.setBackground(new java.awt.Color(0, 102, 153));
 
