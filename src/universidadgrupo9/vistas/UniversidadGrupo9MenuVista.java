@@ -307,7 +307,7 @@ public class UniversidadGrupo9MenuVista extends javax.swing.JFrame {
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
 
-        int confirmado = JOptionPane.showConfirmDialog(this, "¿Lo confirmas?");
+        int confirmado = JOptionPane.showConfirmDialog(this, "¿Desea salir del programa?");
 
                 if (JOptionPane.OK_OPTION == confirmado) {
                 
