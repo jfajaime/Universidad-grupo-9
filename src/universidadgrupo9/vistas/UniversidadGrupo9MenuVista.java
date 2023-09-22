@@ -49,28 +49,35 @@ public class UniversidadGrupo9MenuVista extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Universidad ULP grupo 9 Gestion de Alumnos");
+<<<<<<< HEAD
         setPreferredSize(new java.awt.Dimension(1200, 800));
+=======
+        setFont(new java.awt.Font("Georgia", 1, 24)); // NOI18N
+>>>>>>> 9d0b57c25924f98e0796f63333a0874a7d19412e
 
         escritorio.setBackground(new java.awt.Color(0, 102, 153));
+        escritorio.setFont(new java.awt.Font("Georgia", 1, 20)); // NOI18N
 
         javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 700, Short.MAX_VALUE)
+            .addGap(0, 1200, Short.MAX_VALUE)
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 473, Short.MAX_VALUE)
+            .addGap(0, 874, Short.MAX_VALUE)
         );
 
+        jMenuBar1.setBackground(new java.awt.Color(255, 255, 255));
         jMenuBar1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 204)));
         jMenuBar1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         jMenu1.setBackground(new java.awt.Color(255, 102, 153));
         jMenu1.setText("Alumno");
-        jMenu1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jMenu1.setFont(new java.awt.Font("Georgia", 1, 20)); // NOI18N
 
+        jMenuItem1.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/universidadgrupo9/imagenes/alumno.png"))); // NOI18N
         jMenuItem1.setText("Formulario de Alumno");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -83,8 +90,9 @@ public class UniversidadGrupo9MenuVista extends javax.swing.JFrame {
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Materias");
-        jMenu2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jMenu2.setFont(new java.awt.Font("Georgia", 1, 20)); // NOI18N
 
+        jMenuItem2.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/universidadgrupo9/imagenes/materia.png"))); // NOI18N
         jMenuItem2.setText("Formulario de Materia");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
@@ -94,6 +102,7 @@ public class UniversidadGrupo9MenuVista extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem2);
 
+        jMenuItem6.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/universidadgrupo9/imagenes/materias.png"))); // NOI18N
         jMenuItem6.setText("Listar Materias");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
@@ -106,8 +115,9 @@ public class UniversidadGrupo9MenuVista extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Administracion");
-        jMenu3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jMenu3.setFont(new java.awt.Font("Georgia", 1, 20)); // NOI18N
 
+        jMenuItem3.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/universidadgrupo9/imagenes/Inscripcion.png"))); // NOI18N
         jMenuItem3.setText("Manejo de Inscripciones");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
@@ -117,6 +127,7 @@ public class UniversidadGrupo9MenuVista extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem3);
 
+        jMenuItem4.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/universidadgrupo9/imagenes/notas.png"))); // NOI18N
         jMenuItem4.setText("Manipulacion de Notas");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
@@ -129,8 +140,9 @@ public class UniversidadGrupo9MenuVista extends javax.swing.JFrame {
         jMenuBar1.add(jMenu3);
 
         jMenu4.setText("Consultas");
-        jMenu4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jMenu4.setFont(new java.awt.Font("Georgia", 1, 20)); // NOI18N
 
+        jMenuItem5.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/universidadgrupo9/imagenes/alumxMat.png"))); // NOI18N
         jMenuItem5.setText("Alumnos por Materia");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
@@ -143,8 +155,9 @@ public class UniversidadGrupo9MenuVista extends javax.swing.JFrame {
         jMenuBar1.add(jMenu4);
 
         jMenu5.setText("Salir");
-        jMenu5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jMenu5.setFont(new java.awt.Font("Georgia", 1, 20)); // NOI18N
 
+        jMenuItem7.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/universidadgrupo9/imagenes/exit.png"))); // NOI18N
         jMenuItem7.setText("Exit");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
