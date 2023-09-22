@@ -34,6 +34,7 @@ public class UniversidadGrupo9MenuVista extends javax.swing.JFrame {
 
         escritorio = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu6 = new javax.swing.JMenu();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
@@ -49,10 +50,15 @@ public class UniversidadGrupo9MenuVista extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Universidad ULP grupo 9 Gestion de Alumnos");
+        setBackground(new java.awt.Color(255, 51, 102));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setFont(new java.awt.Font("Georgia", 1, 24)); // NOI18N
+        setForeground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(1200, 800));
 
         escritorio.setBackground(new java.awt.Color(0, 102, 153));
+        escritorio.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 51, 51)));
+        escritorio.setForeground(new java.awt.Color(255, 51, 51));
         escritorio.setFont(new java.awt.Font("Georgia", 1, 20)); // NOI18N
         escritorio.setPreferredSize(new java.awt.Dimension(1200, 800));
 
@@ -60,16 +66,21 @@ public class UniversidadGrupo9MenuVista extends javax.swing.JFrame {
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1200, Short.MAX_VALUE)
+            .addGap(0, 1198, Short.MAX_VALUE)
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+            .addGap(0, 784, Short.MAX_VALUE)
         );
 
-        jMenuBar1.setBackground(new java.awt.Color(255, 255, 255));
-        jMenuBar1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 204)));
+        jMenuBar1.setBackground(new java.awt.Color(243, 44, 44));
+        jMenuBar1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 51, 51)));
         jMenuBar1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jMenuBar1.setMinimumSize(new java.awt.Dimension(529, 60));
+        jMenuBar1.setPreferredSize(new java.awt.Dimension(529, 60));
+
+        jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/universidadgrupo9/imagenes/logo_mini.png"))); // NOI18N
+        jMenuBar1.add(jMenu6);
 
         jMenu1.setBackground(new java.awt.Color(255, 102, 153));
         jMenu1.setText("Alumno");
@@ -177,7 +188,7 @@ public class UniversidadGrupo9MenuVista extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(escritorio, 786, 786, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -382,6 +393,7 @@ public class UniversidadGrupo9MenuVista extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
