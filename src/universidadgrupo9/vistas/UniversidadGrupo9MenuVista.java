@@ -49,14 +49,12 @@ public class UniversidadGrupo9MenuVista extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Universidad ULP grupo 9 Gestion de Alumnos");
-<<<<<<< HEAD
-        setPreferredSize(new java.awt.Dimension(1200, 800));
-=======
         setFont(new java.awt.Font("Georgia", 1, 24)); // NOI18N
->>>>>>> 9d0b57c25924f98e0796f63333a0874a7d19412e
+        setMinimumSize(new java.awt.Dimension(1200, 800));
 
         escritorio.setBackground(new java.awt.Color(0, 102, 153));
         escritorio.setFont(new java.awt.Font("Georgia", 1, 20)); // NOI18N
+        escritorio.setPreferredSize(new java.awt.Dimension(1200, 800));
 
         javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
         escritorio.setLayout(escritorioLayout);
@@ -66,7 +64,7 @@ public class UniversidadGrupo9MenuVista extends javax.swing.JFrame {
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 874, Short.MAX_VALUE)
+            .addGap(0, 800, Short.MAX_VALUE)
         );
 
         jMenuBar1.setBackground(new java.awt.Color(255, 255, 255));
@@ -175,11 +173,11 @@ public class UniversidadGrupo9MenuVista extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(escritorio, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(escritorio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(escritorio)
+            .addComponent(escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -296,12 +294,8 @@ public class UniversidadGrupo9MenuVista extends javax.swing.JFrame {
         escritorio.moveToFront(bAxM);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
-    private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
-        
-        
-    }//GEN-LAST:event_jMenu2ActionPerformed
-
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+           
         escritorio.removeAll();
         escritorio.repaint();
         JDesktopPane escritorio = new JDesktopPane() {
