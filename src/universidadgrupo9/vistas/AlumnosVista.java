@@ -445,7 +445,7 @@ public class AlumnosVista extends javax.swing.JInternalFrame {
 
             if (alumno != null) {
                 // Si se encontró al alumno, muestra sus datos en los campos del formulario
-//                jTFidalumno.setText(Integer.toString(alumno.getId()));
+                jTFidalumno.setText(Integer.toString(alumno.getId()));
                 jTFDni.setText(Integer.toString(alumno.getDni()));
                 jTFApellido.setText(alumno.getApellido());
                 jTFNombre.setText(alumno.getNombre());

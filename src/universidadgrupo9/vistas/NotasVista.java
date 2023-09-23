@@ -2,35 +2,40 @@ package universidadgrupo9.vistas;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import universidadgrupo9.accesoADatos.AlumnoData;
 import universidadgrupo9.accesoADatos.InscripcionData;
+import universidadgrupo9.accesoADatos.MateriaData;
 import universidadgrupo9.entidades.Alumno;
 import universidadgrupo9.entidades.AlumnoHijo;
 import universidadgrupo9.entidades.Inscripcion;
 import universidadgrupo9.entidades.Materia;
 
 public class NotasVista extends javax.swing.JInternalFrame {
+
     private DefaultTableModel modelo = new DefaultTableModel();
     AlumnoData alumnosData = new AlumnoData();
+    MateriaData mat = new MateriaData();
     InscripcionData inscripcionData = new InscripcionData();
     Inscripcion inscripcion = new Inscripcion();
+    Materia materia = new Materia();
 
     public NotasVista() {
         initComponents();
         cabecera();
         cargarComboBox();
-        cargarDatos();
+        cargarDatosATabla();
     }
-    
+
     private void cargarComboBox() {
         ArrayList<Alumno> alumnos = (ArrayList<Alumno>) alumnosData.listarAlumnos();
-    for (Alumno alumno : alumnos) {
-        AlumnoHijo alumnoHijo = new AlumnoHijo(alumno.getId(), alumno.getDni(), alumno.getApellido(), alumno.getNombre(), alumno.getFechaN(), alumno.isEstado());
-        jCNotas.addItem(alumnoHijo);
+        for (Alumno alumno : alumnos) {
+            AlumnoHijo alumnoHijo = new AlumnoHijo(alumno.getId(), alumno.getDni(), alumno.getApellido(), alumno.getNombre(), alumno.getFechaN(), alumno.isEstado());
+            jCNotas.addItem(alumnoHijo);
+        }
     }
-    }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -138,6 +143,7 @@ public class NotasVista extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jCNotasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCNotasItemStateChanged
+
     }//GEN-LAST:event_jCNotasItemStateChanged
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -145,15 +151,26 @@ public class NotasVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jCNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCNotasActionPerformed
-        cargarDatos();
+        cargarDatosATabla();
     }//GEN-LAST:event_jCNotasActionPerformed
 
     private void jBguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBguardarActionPerformed
-        Alumno alumno = (Alumno) jCNotas.getSelectedItem();
-        Materia materia = new Materia();
-        int id = alumno.getId();
-      //  inscripcionData.actualizarNota(id , );
-        cargarDatos();
+        if (jTNotas.getSelectedRow() != -1) {
+            Alumno alumno = (Alumno) jCNotas.getSelectedItem();
+            int filaS = jTNotas.getSelectedRow();
+            int idA = alumno.getId();
+            int idM = materia.getId();
+            double notaM = Double.parseDouble(this.jTNotas.getValueAt(filaS, 2).toString());
+            if (notaM >= 0 && notaM < 10.1) {
+                inscripcionData.actualizarNota(idA, idM, notaM);
+            } else {
+                JOptionPane.showMessageDialog(this, "Nota fuera de rango\n"
+                        + "su parametro debe se de 0 a 10");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "No ha seleccionado registro");
+        }
+        cargarDatosATabla();
     }//GEN-LAST:event_jBguardarActionPerformed
 
 
@@ -166,21 +183,21 @@ public class NotasVista extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTNotas;
     // End of variables declaration//GEN-END:variables
-    private void cabecera(){
+    private void cabecera() {
         modelo.addColumn("Codigo");
         modelo.addColumn("Nombre");
         modelo.addColumn("Nota");
         jTNotas.setModel(modelo);
     }
-    private void cargarDatos() {
+
+    private void cargarDatosATabla() {
         Alumno alumno = (Alumno) jCNotas.getSelectedItem();
         int id = alumno.getId();
-        
-        List<Materia> materiasCursadas = inscripcionData.obtenerMateriasCursadas(id);
-            for (Materia materia : materiasCursadas) {
-                System.out.println("inscripcion " + inscripcion.toString());
-                
-                modelo.addRow(new Object[]{materia.getId(), materia.getNombre(), inscripcion.getNota()});
-            }
+        List<Inscripcion> inscripciones = inscripcionData.obtenerInscripcionesPorAlumno(id);
+        modelo.setRowCount(0);
+        for (Inscripcion insc : inscripciones) {
+            materia = mat.buscarMateria(insc.getMateria().getId());
+            modelo.addRow(new Object[]{insc.getId(), materia.getNombre(), insc.getNota()});
+        }
     }
 }

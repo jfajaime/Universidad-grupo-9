@@ -37,9 +37,7 @@ public class InscripcionData {
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
 
-
             if (rs.next()) {
-                System.out.println("inscripcion 2" + insc);
                 insc.setId(rs.getInt(1));
                 JOptionPane.showMessageDialog(null, "Alumno añadido con exito.", "Mensaje", JOptionPane.PLAIN_MESSAGE, icono);
             }
@@ -207,8 +205,9 @@ public class InscripcionData {
     }
 
     public void actualizarNota(int idAlumno, int idMateria, double nota) {
+        Icon icono = new ImageIcon(getClass().getResource("/universidadgrupo9/imagenes/inscripcion.png"));
+        
         String sql = "UPDATE inscripcion SET nota = ? WHERE idAlumno = ? AND idMateria = ?";
-         Icon icono = new ImageIcon(getClass().getResource("/universidadgrupo9/imagenes/inscripcion.png"));
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -216,13 +215,11 @@ public class InscripcionData {
             ps.setInt(2, idAlumno);
             ps.setInt(3, idMateria);
             int filasActualizadas = ps.executeUpdate();
-
-            if (filasActualizadas > 0 && filasActualizadas < 11) {
+            if (filasActualizadas != -1) {
                 JOptionPane.showMessageDialog(null, "Nota actualizada con éxito.");
             } else {
                 JOptionPane.showMessageDialog(null, "No se encontraron inscripciones para actualizar la nota.");
             }
-
             ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al actualizar la nota: " + ex.getMessage());

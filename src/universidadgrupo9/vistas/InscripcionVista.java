@@ -25,7 +25,7 @@ public class InscripcionVista extends javax.swing.JInternalFrame {
         initComponents();
         cargarComboBox();
         cabecera();
-        cargarDatos();
+        cargarDatosATabla();
     }
 
     private void cargarComboBox() {
@@ -224,17 +224,17 @@ public class InscripcionVista extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jCAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCAlumnosActionPerformed
-        cargarDatos();
+        cargarDatosATabla();
     }//GEN-LAST:event_jCAlumnosActionPerformed
 
     private void jRMateriasNOInscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRMateriasNOInscriptasActionPerformed
         jRMateriasNOInscriptas.setSelected(true);
-        cargarDatos();
+        cargarDatosATabla();
     }//GEN-LAST:event_jRMateriasNOInscriptasActionPerformed
 
     private void jRMateriasInscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRMateriasInscriptasActionPerformed
         jRMateriasInscriptas.setSelected(true);
-        cargarDatos();
+        cargarDatosATabla();
     }//GEN-LAST:event_jRMateriasInscriptasActionPerformed
 
     private void jBSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalirActionPerformed
@@ -245,19 +245,18 @@ public class InscripcionVista extends javax.swing.JInternalFrame {
         try {
             Alumno alumno = (Alumno) jCAlumnos.getSelectedItem();
             int filaS = jTInscripcion.getSelectedRow();
-            int idM = (int) jTInscripcion.getValueAt(filaS, 0);
-            Materia materia = materiaX.buscarMateria(idM);
-            insc = new Inscripcion(0.0, alumno, materia);
 
             if (filaS != -1) {
-                System.out.println(filaS);
+                int idM = (int) jTInscripcion.getValueAt(filaS, 0);
+                Materia materia = materiaX.buscarMateria(idM);
+                insc = new Inscripcion(0.0, alumno, materia);
+               
                 inscripcionData.guardarInscripcion(insc);
                 modelo.removeRow(filaS);
             } else if (filaS == -1) {
                 JOptionPane.showMessageDialog(this, "No ha seleccionado ninguna materia");
             }
         } catch (Exception ex) {
-
             JOptionPane.showMessageDialog(this, "Error " + ex.getLocalizedMessage());
         }
     }//GEN-LAST:event_jBInscribirActionPerformed
@@ -266,8 +265,8 @@ public class InscripcionVista extends javax.swing.JInternalFrame {
         Alumno alumno = (Alumno) jCAlumnos.getSelectedItem();
         int idA = alumno.getId();
         int filaS = jTInscripcion.getSelectedRow();
-        int idM = (int) jTInscripcion.getValueAt(filaS, 0);
         if (filaS != -1) {
+            int idM = (int) jTInscripcion.getValueAt(filaS, 0);
             inscripcionData.borrarInscripcionMateriaAlumno(idA, idM);
             modelo.removeRow(filaS);
         } else if (filaS == -1) {
@@ -301,7 +300,7 @@ public class InscripcionVista extends javax.swing.JInternalFrame {
         jTInscripcion.setModel(modelo);
     }
 
-    private void cargarDatos() {
+    private void cargarDatosATabla() {
         Alumno alumno = (Alumno) jCAlumnos.getSelectedItem();//selecciona el alumno en el comboBox
         int id = alumno.getId();
         modelo.setRowCount(0);
