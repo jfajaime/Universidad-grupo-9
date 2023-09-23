@@ -80,11 +80,6 @@ public class NotasVista extends javax.swing.JInternalFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Seleccione un Alumno");
 
-        jCNotas.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jCNotasItemStateChanged(evt);
-            }
-        });
         jCNotas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCNotasActionPerformed(evt);
@@ -170,17 +165,9 @@ public class NotasVista extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jCNotasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCNotasItemStateChanged
-
-    }//GEN-LAST:event_jCNotasItemStateChanged
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jCNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCNotasActionPerformed
-        cargarDatosATabla();
-    }//GEN-LAST:event_jCNotasActionPerformed
 
     private void jBguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBguardarActionPerformed
         if (jTNotas.getSelectedRow() != -1) {
@@ -200,6 +187,10 @@ public class NotasVista extends javax.swing.JInternalFrame {
         }
         cargarDatosATabla();
     }//GEN-LAST:event_jBguardarActionPerformed
+
+    private void jCNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCNotasActionPerformed
+        cargarDatosATabla();
+    }//GEN-LAST:event_jCNotasActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
