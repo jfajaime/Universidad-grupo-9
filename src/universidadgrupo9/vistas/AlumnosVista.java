@@ -57,6 +57,7 @@ public class AlumnosVista extends javax.swing.JInternalFrame {
         jBBuscarXid = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
 
+        setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 0, 0)));
         setTitle("Gestion de Alumnos");
         setMinimumSize(new java.awt.Dimension(800, 350));
         setPreferredSize(new java.awt.Dimension(800, 350));
@@ -87,7 +88,7 @@ public class AlumnosVista extends javax.swing.JInternalFrame {
             }
         });
 
-        jBNuevo.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jBNuevo.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jBNuevo.setText("Nuevo");
         jBNuevo.setMaximumSize(new java.awt.Dimension(150, 30));
         jBNuevo.setMinimumSize(new java.awt.Dimension(150, 30));
@@ -95,7 +96,7 @@ public class AlumnosVista extends javax.swing.JInternalFrame {
         jBNuevo.setPreferredSize(new java.awt.Dimension(150, 30));
         jBNuevo.setSelected(true);
 
-        jBEliminar.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jBEliminar.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jBEliminar.setText("Eliminar");
         jBEliminar.setMaximumSize(new java.awt.Dimension(150, 30));
         jBEliminar.setMinimumSize(new java.awt.Dimension(150, 30));
@@ -108,7 +109,7 @@ public class AlumnosVista extends javax.swing.JInternalFrame {
             }
         });
 
-        jBGuardar.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jBGuardar.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jBGuardar.setText("Guardar");
         jBGuardar.setMaximumSize(new java.awt.Dimension(150, 30));
         jBGuardar.setMinimumSize(new java.awt.Dimension(150, 30));
@@ -121,7 +122,7 @@ public class AlumnosVista extends javax.swing.JInternalFrame {
             }
         });
 
-        jBSalir.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jBSalir.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jBSalir.setText("Salir");
         jBSalir.setMaximumSize(new java.awt.Dimension(150, 30));
         jBSalir.setMinimumSize(new java.awt.Dimension(150, 30));
@@ -183,7 +184,7 @@ public class AlumnosVista extends javax.swing.JInternalFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
+                                .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel7)
                                 .addGap(18, 18, 18)
@@ -244,7 +245,7 @@ public class AlumnosVista extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jRadioBEstado)
                             .addComponent(jLabel5))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
