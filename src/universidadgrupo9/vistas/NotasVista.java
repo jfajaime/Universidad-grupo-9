@@ -1,14 +1,17 @@
 package universidadgrupo9.vistas;
 
+import java.awt.Component;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListCellRenderer;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import universidadgrupo9.accesoADatos.AlumnoData;
 import universidadgrupo9.accesoADatos.InscripcionData;
 import universidadgrupo9.accesoADatos.MateriaData;
 import universidadgrupo9.entidades.Alumno;
-import universidadgrupo9.entidades.AlumnoHijo;
 import universidadgrupo9.entidades.Inscripcion;
 import universidadgrupo9.entidades.Materia;
 
@@ -29,11 +32,27 @@ public class NotasVista extends javax.swing.JInternalFrame {
     }
 
     private void cargarComboBox() {
-        ArrayList<Alumno> alumnos = (ArrayList<Alumno>) alumnosData.listarAlumnos();
+        DefaultComboBoxModel<Alumno> modeloCB = new DefaultComboBoxModel<>();
+        ArrayList<Alumno> alumnos = (ArrayList<Alumno>) alumnosData.listarAlumnos(); // Supongamos que obtienes la lista de alumnos de alguna fuente
+
         for (Alumno alumno : alumnos) {
-            AlumnoHijo alumnoHijo = new AlumnoHijo(alumno.getId(), alumno.getDni(), alumno.getApellido(), alumno.getNombre(), alumno.getFechaN(), alumno.isEstado());
-            jCNotas.addItem(alumnoHijo);
+            modeloCB.addElement(alumno); // Agrega el objeto Alumno al modelo
         }
+
+        jCNotas.setModel(modeloCB); // Asigna el modelo al JComboBox
+
+        // Configura un renderer personalizado para mostrar la representación personalizada en el JComboBox
+        jCNotas.setRenderer(new DefaultListCellRenderer() {
+            @Override
+            public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+                if (value instanceof Alumno) {
+                    Alumno alumno = (Alumno) value;
+                    String nombreCompleto = alumno.getDni() + " - " + alumno.getApellido() + ", " + alumno.getNombre();
+                    value = nombreCompleto;
+                }
+                return super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+            }
+        });
     }
 
     @SuppressWarnings("unchecked")

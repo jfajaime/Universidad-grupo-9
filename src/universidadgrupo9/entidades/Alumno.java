@@ -8,12 +8,12 @@ import java.time.LocalDate;
  */
 public class Alumno {
     
-    protected int id=-1;
-    protected int dni;
-    protected String apellido;
-    protected String nombre;
-    protected LocalDate fechaN;
-    protected boolean estado;
+    private int id=-1;
+    private int dni;
+    private String apellido;
+    private String nombre;
+    private LocalDate fechaN;
+    private boolean estado;
     
     
     public Alumno(int id, int dni, String apellido, String nombre, LocalDate fechaN, boolean estado){
