@@ -12,7 +12,7 @@ package universidadgrupo9.entidades;
 public class Materia {
     
     private int id=-1;
-    private String nombre;
+    String nombre;
     private int anio;
     private boolean estado;
 

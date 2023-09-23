@@ -1,23 +1,50 @@
 package universidadgrupo9.vistas;
 
+import java.awt.Component;
 import java.util.ArrayList;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListCellRenderer;
+import javax.swing.JList;
+import javax.swing.table.DefaultTableModel;
+import universidadgrupo9.accesoADatos.InscripcionData;
 import universidadgrupo9.accesoADatos.MateriaData;
+import universidadgrupo9.entidades.Alumno;
 import universidadgrupo9.entidades.Materia;
 
 public class AlumnoPorMateriaVista extends javax.swing.JInternalFrame {
-
+    private DefaultTableModel modelo = new DefaultTableModel();
+    InscripcionData inscripcionData = new InscripcionData();
+    MateriaData materiasData = new MateriaData(); 
+    Materia materia = new Materia();
+    
     public AlumnoPorMateriaVista() {
         initComponents();
         cargarComboBox();
+        cabecera();
+        cargarDatosATabla();
     }
     
     private void cargarComboBox() {
-        MateriaData materiasData = new MateriaData(); 
-        jCMateria.removeAllItems(); 
-        ArrayList<Materia> materias = (ArrayList<Materia>) materiasData.listarMaterias();//Funciono casteandolo a ArrayList
-        for (Materia materia : materias) {
-            jCMateria.addItem(materia.toString());
+        DefaultComboBoxModel<Materia> modelo = new DefaultComboBoxModel<>();
+        ArrayList<Materia> materias = (ArrayList<Materia>) materiasData.listarMaterias();
+
+        for (Materia materia : materias) {  
+            modelo.addElement(materia);
         }
+
+        jCMateria.setModel(modelo);
+
+        // Para mostrar solo el nombre en el JComboBox
+        jCMateria.setRenderer(new DefaultListCellRenderer() {
+        @Override
+        public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+            if (value instanceof Materia) {
+                value = ((Materia) value).getNombre();
+            }
+                return super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+            }
+        });
     }
 
     @SuppressWarnings("unchecked")
@@ -27,7 +54,7 @@ public class AlumnoPorMateriaVista extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTConsultas = new javax.swing.JTable();
         jCMateria = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
 
@@ -40,7 +67,7 @@ public class AlumnoPorMateriaVista extends javax.swing.JInternalFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jLabel2.setText("Seleccione una Materia");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTConsultas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -51,10 +78,21 @@ public class AlumnoPorMateriaVista extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTConsultas);
+
+        jCMateria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCMateriaActionPerformed(evt);
+            }
+        });
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jButton1.setText("Salir");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -99,13 +137,37 @@ public class AlumnoPorMateriaVista extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jCMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCMateriaActionPerformed
+        cargarDatosATabla();
+    }//GEN-LAST:event_jCMateriaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jCMateria;
+    private javax.swing.JComboBox<Materia> jCMateria;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTConsultas;
     // End of variables declaration//GEN-END:variables
+    private void cabecera() {
+        modelo.addColumn("ID");
+        modelo.addColumn("DNI");
+        modelo.addColumn("Apellido");
+        modelo.addColumn("Nombre");
+        jTConsultas.setModel(modelo);
+    }
+    private void cargarDatosATabla() {
+        materia = (Materia) jCMateria.getSelectedItem();
+        int idM = materia.getId();
+        modelo.setRowCount(0);
+        List<Alumno> alumnos = inscripcionData.obtenerAlumnosXMateria(idM);
+            for (Alumno alumno : alumnos) {
+                modelo.addRow(new Object[]{alumno.getId(), alumno.getDni(), alumno.getApellido(), alumno.getNombre()});
+            }
+    }
 }
