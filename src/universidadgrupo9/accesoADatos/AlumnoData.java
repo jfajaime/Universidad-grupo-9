@@ -256,12 +256,12 @@ public class AlumnoData {
 
             if (rs.next()) {
                 alumno = new Alumno();
-                alumno.setId(rs.getInt("idAlumno"));
+//                alumno.setId(rs.getInt("idAlumno"));
                 alumno.setDni(rs.getInt("dni"));
                 alumno.setApellido(rs.getString("apellido"));
                 alumno.setNombre(rs.getString("nombre"));
                 alumno.setFechaN(rs.getDate("fechaNac").toLocalDate());
-                alumno.setEstado(true);
+                alumno.setEstado(rs.getBoolean("estado"));
 
             } else {
                 JOptionPane.showMessageDialog(null, "No existe el alumno");
