@@ -89,12 +89,17 @@ public class AlumnosVista extends javax.swing.JInternalFrame {
         });
 
         jBNuevo.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        jBNuevo.setText("Nuevo");
+        jBNuevo.setText("Limpiar");
         jBNuevo.setMaximumSize(new java.awt.Dimension(150, 30));
         jBNuevo.setMinimumSize(new java.awt.Dimension(150, 30));
         jBNuevo.setName(""); // NOI18N
         jBNuevo.setPreferredSize(new java.awt.Dimension(150, 30));
         jBNuevo.setSelected(true);
+        jBNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBNuevoActionPerformed(evt);
+            }
+        });
 
         jBEliminar.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jBEliminar.setText("Eliminar");
@@ -475,6 +480,16 @@ public class AlumnosVista extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jBSalirActionPerformed
+
+    private void jBNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNuevoActionPerformed
+
+        jTFDni.setText("");
+        jTFApellido.setText("");
+        jTFNombre.setText("");
+        jRadioBEstado.setSelected(false);
+        jDateChooser1.setDate(null);
+
+    }//GEN-LAST:event_jBNuevoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
