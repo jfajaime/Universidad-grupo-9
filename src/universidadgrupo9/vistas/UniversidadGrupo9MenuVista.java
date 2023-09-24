@@ -23,11 +23,9 @@ public class UniversidadGrupo9MenuVista extends javax.swing.JFrame {
         setContentPane(escritorio);
         setSize(800, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setVisible(true);
-        
-
-    
+        setVisible(true);    
     }
+    
             
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

@@ -8,7 +8,6 @@ package universidadgrupo9.vistas;
 import java.awt.HeadlessException;
 import java.time.LocalDate;
 import java.time.ZoneId;
-
 import javax.swing.JOptionPane;
 import universidadgrupo9.accesoADatos.AlumnoData;
 import universidadgrupo9.entidades.Alumno;
@@ -484,6 +483,7 @@ public class AlumnosVista extends javax.swing.JInternalFrame {
     private void jBNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNuevoActionPerformed
 
         jTFDni.setText("");
+        jTFidalumno.setText("");
         jTFApellido.setText("");
         jTFNombre.setText("");
         jRadioBEstado.setSelected(false);
