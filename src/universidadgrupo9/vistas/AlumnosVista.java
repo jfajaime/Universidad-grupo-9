@@ -280,7 +280,6 @@ public class AlumnosVista extends javax.swing.JInternalFrame {
                 jTFApellido.setText(alumno.getApellido());
                 jTFNombre.setText(alumno.getNombre());
                 jRadioBEstado.setSelected(alumno.isEstado());
-
                 // Convierte la fecha de nacimiento a un objeto java.util.Date
                 java.util.Date fechaNacimiento = java.sql.Date.valueOf(alumno.getFechaN());
                 jDateChooser1.setDate(fechaNacimiento);
@@ -396,6 +395,7 @@ public class AlumnosVista extends javax.swing.JInternalFrame {
         } else {                // Si no se encontró al alumno
             JOptionPane.showMessageDialog(this, "Alumno no encontrado");
             jTFDni.setText("");
+            jTFidalumno.setText("");
             jTFApellido.setText("");
             jTFNombre.setText("");
             jRadioBEstado.setSelected(false);
@@ -422,7 +422,6 @@ public class AlumnosVista extends javax.swing.JInternalFrame {
 //            jTFApellido.setText(alumno.getApellido());
             jTFNombre.setText(alumno.getNombre());
             jRadioBEstado.setSelected(alumno.isEstado());
-
             // Convierte la fecha de nacimiento a un objeto java.util.Date
             java.util.Date fechaNacimiento = java.sql.Date.valueOf(alumno.getFechaN());
             jDateChooser1.setDate(fechaNacimiento);
