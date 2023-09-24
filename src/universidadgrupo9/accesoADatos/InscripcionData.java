@@ -215,6 +215,7 @@ public class InscripcionData {
             ps.setInt(2, idAlumno);
             ps.setInt(3, idMateria);
             int filasActualizadas = ps.executeUpdate();
+            System.out.println("filas " + filasActualizadas);
             if (filasActualizadas != -1) {
                 JOptionPane.showMessageDialog(null, "Nota actualizada con éxito.");
             } else {

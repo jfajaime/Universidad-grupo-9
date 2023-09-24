@@ -66,7 +66,7 @@ public class AlumnoData {
 
     public Alumno buscarAlumno(String nombre) {
         Alumno alumno = null;
-        String sql = "select dni, apellido, nombre, fechaNac from alumno where nombre = ? and estado = 1";
+        String sql = "SELECT * FROM alumno WHERE nombre = ? AND estado = 1";
         PreparedStatement ps = null;
         try {
             ps = con.prepareStatement(sql);
@@ -77,6 +77,7 @@ public class AlumnoData {
             if (rs.next()) {
                 alumno = new Alumno();
                 alumno.setNombre(nombre);
+                alumno.setId(rs.getInt("idAlumno"));
                 alumno.setDni(rs.getInt("dni"));
                 alumno.setApellido(rs.getString("apellido"));
                 alumno.setNombre(rs.getString("nombre"));
@@ -99,7 +100,7 @@ public class AlumnoData {
 
         Alumno alumno = null;
 
-        String sql = "select idAlumno, dni, apellido, nombre, fechanac from alumno where dni = ? and estado = 1";
+        String sql = "select * from alumno where dni = ? and estado = 1";
 
         PreparedStatement ps = null;
 
@@ -211,7 +212,7 @@ public class AlumnoData {
 
     public Alumno buscarApellido(String apellido) {
         Alumno alumno = null;
-        String sql = "select idAlumno, dni, apellido, nombre, fechaNac from alumno where apellido = ? and estado = 1";
+        String sql = "SELECT * FROM alumno WHERE apellido = ? AND estado = 1";
         PreparedStatement ps = null;
         try {
             ps = con.prepareStatement(sql);
@@ -244,7 +245,7 @@ public class AlumnoData {
     public Alumno buscarXidAlumno(int id) {
         Alumno alumno = null;
 
-        String sql = " select  dni, apellido, nombre, fechanac from alumno where idAlumno = ?  and estado = 1 ";
+        String sql = " SELECT * FROM alumno WHERE idAlumno = ? AND estado = 1";
 
         PreparedStatement ps = null;
 

@@ -24,6 +24,7 @@ public class UniversidadGrupo9MenuVista extends javax.swing.JFrame {
         setSize(800, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
+        
 
     
     }
@@ -55,6 +56,7 @@ public class UniversidadGrupo9MenuVista extends javax.swing.JFrame {
         setFont(new java.awt.Font("Georgia", 1, 24)); // NOI18N
         setForeground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(1200, 800));
+        setUndecorated(true);
 
         escritorio.setBackground(new java.awt.Color(0, 102, 153));
         escritorio.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 51, 51)));
