@@ -385,7 +385,7 @@ public class AlumnosVista extends javax.swing.JInternalFrame {
             jTFDni.setText(Integer.toString(alumno.getDni()));
             jTFidalumno.setText(Integer.toString(alumno.getId()));
             jTFApellido.setText(alumno.getApellido());
-            jTFNombre.setText(alumno.getNombre());
+//            jTFNombre.setText(alumno.getNombre()); para que lo voy a pedir si lo estoy escribiendo pa buscar
             jRadioBEstado.setSelected(alumno.isEstado());
 
             // Convierte la fecha de nacimiento a un objeto java.util.Date
