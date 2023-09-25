@@ -41,7 +41,7 @@ public class AlumnoData {
                 if (rs.next()) {
                     alumno.setId(rs.getInt(1));
                 } else {
-                    System.out.println("No se pudo recuperar el Id");
+                   JOptionPane.showMessageDialog(null, "No se pudo recuperar el Id");
                 }
                 ps.close();
                 rs.close();
@@ -72,7 +72,6 @@ public class AlumnoData {
                 alumno.setId(rs.getInt("idAlumno"));
                 alumno.setDni(rs.getInt("dni"));
                 alumno.setApellido(rs.getString("apellido"));
-//                alumno.setNombre(rs.getString("nombre"));
                 alumno.setFechaN(rs.getDate("fechanac").toLocalDate());
                 alumno.setEstado(rs.getBoolean("estado"));
 
@@ -153,17 +152,19 @@ public class AlumnoData {
     }
 
     public void modificarAlumno(Alumno alumno) {
-
         Icon icono = new ImageIcon(getClass().getResource("/universidadgrupo9/imagenes/alumno.png"));
-        String sql = "UPDATE alumno SET dni = ? , apellido = ?, nombre = ?, fechaNacimiento = ? WHERE idAlumno = ?";
+        
+        String sql = "UPDATE alumno SET dni = ? , apellido = ?, nombre = ?, estado = ? WHERE idAlumno = ?";
+        
         PreparedStatement ps = null;
 
         try {
             ps = con.prepareStatement(sql);
+            System.out.println(sql);
             ps.setInt(1, alumno.getDni());
             ps.setString(2, alumno.getApellido());
             ps.setString(3, alumno.getNombre());
-            ps.setDate(4, Date.valueOf(alumno.getFechaN()));
+            ps.setBoolean(4,alumno.isEstado()) ;
             ps.setInt(5, alumno.getId());
             int exito = ps.executeUpdate();
 
@@ -247,7 +248,6 @@ public class AlumnoData {
 
             if (rs.next()) {
                 alumno = new Alumno();
-//                alumno.setId(rs.getInt("idAlumno"));
                 alumno.setDni(rs.getInt("dni"));
                 alumno.setApellido(rs.getString("apellido"));
                 alumno.setNombre(rs.getString("nombre"));

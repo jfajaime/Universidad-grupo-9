@@ -259,13 +259,9 @@ public class AlumnosVista extends javax.swing.JInternalFrame {
                 jRadioBEstado.setSelected(alumno.isEstado());
                 java.util.Date fechaNacimiento = java.sql.Date.valueOf(alumno.getFechaN());
                 jDateChooser1.setDate(fechaNacimiento);
-            } else {      
+            } else {
                 JOptionPane.showMessageDialog(this, "Alumno no encontrado");
-                jTFDni.setText("");
-                jTFApellido.setText("");
-                jTFNombre.setText("");
-                jRadioBEstado.setSelected(false);
-                jDateChooser1.setDate(null);
+                limpiar();
             }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Error: Ingresa un número válido en el campo DNI  " + e.getMessage());
@@ -276,34 +272,54 @@ public class AlumnosVista extends javax.swing.JInternalFrame {
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
         try {
-            if (jTFDni.getText().isEmpty() || jTFApellido.getText().isEmpty() || jTFNombre.getText().isEmpty() || jDateChooser1.getDate() == null) {
-                JOptionPane.showMessageDialog(this, "Error: Uno o más campos están vacíos");
-                return;
+            if (jTFidalumno.getText().isEmpty()) {
+
+                if (jTFDni.getText().isEmpty() || jTFApellido.getText().isEmpty() || jTFNombre.getText().isEmpty() || jDateChooser1.getDate() == null) {
+                    JOptionPane.showMessageDialog(this, "Error: Uno o más campos están vacíos");
+
+                } else {
+
+                    int dni = Integer.parseInt(jTFDni.getText());
+                    String apellido = jTFApellido.getText();
+                    String nombre = jTFNombre.getText();
+                    java.util.Date fechaNacimientoUtil = (java.util.Date) jDateChooser1.getDate();
+                    LocalDate fechaNacimiento = fechaNacimientoUtil.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                    boolean estado = true;
+
+                    Alumno nuevoAlumno = new Alumno(dni, apellido, nombre, fechaNacimiento, estado);
+                    AlumnoData alumnoData = new AlumnoData();
+                    alumnoData.guardarAlumno(nuevoAlumno);
+                    limpiar();
+
+                }
+            } else {
+
+                if (jTFDni.getText().isEmpty() || jTFApellido.getText().isEmpty() || jTFNombre.getText().isEmpty() || jDateChooser1.getDate() == null) {
+                    JOptionPane.showMessageDialog(this, "Error: Uno o más campos están vacíos");
+
+                } else {
+                    int id = Integer.parseInt(jTFidalumno.getText());
+                    int dni = Integer.parseInt(jTFDni.getText());
+                    String apellido = jTFApellido.getText();
+                    String nombre = jTFNombre.getText();
+                    java.util.Date fechaNacimientoUtil = (java.util.Date) jDateChooser1.getDate();
+                    LocalDate fechaNacimiento = fechaNacimientoUtil.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                    boolean estado = jRadioBEstado.isSelected();
+
+                    Alumno nuevoAlumno = new Alumno(id, dni, apellido, nombre, fechaNacimiento, estado);
+                    AlumnoData alumnoData = new AlumnoData();
+                    alumnoData.modificarAlumno(nuevoAlumno);
+
+                    limpiar();
+                }
             }
- 
-            int dni = Integer.parseInt(jTFDni.getText());
-            String apellido = jTFApellido.getText();
-            String nombre = jTFNombre.getText();
-            java.util.Date fechaNacimientoUtil = (java.util.Date) jDateChooser1.getDate();
-            LocalDate fechaNacimiento = fechaNacimientoUtil.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            boolean estado = jRadioBEstado.isSelected();
 
-            Alumno nuevoAlumno = new Alumno(dni, apellido, nombre, fechaNacimiento, estado);
-            AlumnoData alumnoData = new AlumnoData(); 
-            alumnoData.guardarAlumno(nuevoAlumno); 
-
-            jTFDni.setText("");
-            jTFApellido.setText("");
-            jTFNombre.setText("");
-            jRadioBEstado.setSelected(false);
-            jDateChooser1.setDate(null);
-        } catch (NumberFormatException ex) {          
+        } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "Hay algún error en los campos numéricos -" + ex.getMessage());
-        } catch (HeadlessException e) { 
+        } catch (HeadlessException e) {
             JOptionPane.showMessageDialog(this, "Error: Ocurrió un problema al buscar al alumno" + e.getMessage());
 
         }
-
     }//GEN-LAST:event_jBGuardarActionPerformed
 
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
@@ -324,12 +340,7 @@ public class AlumnosVista extends javax.swing.JInternalFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error imprevisto!!!" + e.getMessage());
         }
-        jTFDni.setText("");
-        jTFidalumno.setText("");
-        jTFApellido.setText("");
-        jTFNombre.setText("");
-        jRadioBEstado.setSelected(false);
-        jDateChooser1.setDate(null);
+        limpiar();
     }//GEN-LAST:event_jBEliminarActionPerformed
 
     private void jBBuscarXNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarXNombreActionPerformed
@@ -351,12 +362,7 @@ public class AlumnosVista extends javax.swing.JInternalFrame {
 
         } else {                // Si no se encontró al alumno
             JOptionPane.showMessageDialog(this, "Alumno no encontrado");
-            jTFDni.setText("");
-            jTFidalumno.setText("");
-            jTFApellido.setText("");
-            jTFNombre.setText("");
-            jRadioBEstado.setSelected(false);
-            jDateChooser1.setDate(null);
+            limpiar();
         }
 
     }//GEN-LAST:event_jBBuscarXNombreActionPerformed
@@ -385,11 +391,7 @@ public class AlumnosVista extends javax.swing.JInternalFrame {
 
         } else {                // Si no se encontró al alumno
             JOptionPane.showMessageDialog(this, "Alumno no encontrado");
-            jTFDni.setText("");
-            jTFApellido.setText("");
-            jTFNombre.setText("");
-            jRadioBEstado.setSelected(false);
-            jDateChooser1.setDate(null);
+            limpiar();
         }
 
     }//GEN-LAST:event_jBBuscarxApellidoActionPerformed
@@ -417,12 +419,7 @@ public class AlumnosVista extends javax.swing.JInternalFrame {
 
             } else {                // Si no se encontró al alumno
                 JOptionPane.showMessageDialog(this, "Alumno no encontrado");
-                jTFDni.setText("");
-                jTFidalumno.setText("");
-                jTFApellido.setText("");
-                jTFNombre.setText("");
-                jRadioBEstado.setSelected(false);
-                jDateChooser1.setDate(null);
+               limpiar();
             }
         } catch (NumberFormatException e) {//si no hay numeros
             JOptionPane.showMessageDialog(this, "Error: Ingresa un número válido en el campo DNI  " + e.getMessage());
@@ -437,12 +434,7 @@ public class AlumnosVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBSalirActionPerformed
 
     private void jBNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNuevoActionPerformed
-        jTFDni.setText("");
-        jTFidalumno.setText("");
-        jTFApellido.setText("");
-        jTFNombre.setText("");
-        jRadioBEstado.setSelected(false);
-        jDateChooser1.setDate(null);
+       limpiar();
     }//GEN-LAST:event_jBNuevoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -468,4 +460,12 @@ public class AlumnosVista extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTFNombre;
     private javax.swing.JTextField jTFidalumno;
     // End of variables declaration//GEN-END:variables
+    public void limpiar(){
+         jTFDni.setText("");
+        jTFidalumno.setText("");
+        jTFApellido.setText("");
+        jTFNombre.setText("");
+        jRadioBEstado.setSelected(false);
+        jDateChooser1.setDate(null);
+    }
 }
