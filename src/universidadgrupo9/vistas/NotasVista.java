@@ -21,38 +21,16 @@ public class NotasVista extends javax.swing.JInternalFrame {
     AlumnoData alumnosData = new AlumnoData();
     MateriaData mat = new MateriaData();
     InscripcionData inscripcionData = new InscripcionData();
-    Inscripcion inscripcion = new Inscripcion();
-    Materia materia = new Materia();
+    List<Inscripcion> inscripciones;
+    Inscripcion inscripcion;
+    Materia materia;
+    Alumno alumno;
 
     public NotasVista() {
         initComponents();
         cabecera();
         cargarComboBox();
         cargarDatosATabla();
-    }
-
-    private void cargarComboBox() {
-        DefaultComboBoxModel<Alumno> modeloCB = new DefaultComboBoxModel<>();
-        ArrayList<Alumno> alumnos = (ArrayList<Alumno>) alumnosData.listarAlumnos(); // Supongamos que obtienes la lista de alumnos de alguna fuente
-
-        for (Alumno alumno : alumnos) {
-            modeloCB.addElement(alumno); // Agrega el objeto Alumno al modelo
-        }
-
-        jCNotas.setModel(modeloCB); // Asigna el modelo al JComboBox
-
-        // Configura un renderer personalizado para mostrar la representación personalizada en el JComboBox
-        jCNotas.setRenderer(new DefaultListCellRenderer() {
-            @Override
-            public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-                if (value instanceof Alumno) {
-                    Alumno alumno = (Alumno) value;
-                    String nombreCompleto = alumno.getDni() + " - " + alumno.getApellido() + ", " + alumno.getNombre();
-                    value = nombreCompleto;
-                }
-                return super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-            }
-        });
     }
 
     @SuppressWarnings("unchecked")
@@ -171,16 +149,22 @@ public class NotasVista extends javax.swing.JInternalFrame {
 
     private void jBguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBguardarActionPerformed
         if (jTNotas.getSelectedRow() != -1) {
-            Alumno alumno = (Alumno) jCNotas.getSelectedItem();
+            alumno = (Alumno) jCNotas.getSelectedItem();
             int filaS = jTNotas.getSelectedRow();
             int idA = alumno.getId();
-            int idM = materia.getId();
-            double notaM = Double.parseDouble(this.jTNotas.getValueAt(filaS, 2).toString());
-            if (notaM >= 0 && notaM < 10.1) {
-                inscripcionData.actualizarNota(idA, idM, notaM);
-            } else {
-                JOptionPane.showMessageDialog(this, "Nota fuera de rango\n"
-                        + "su parametro debe se de 0 a 10");
+            int idI = (int) this.jTNotas.getValueAt(filaS, 0);
+            for (Inscripcion insc : inscripciones) {
+                materia = mat.buscarMateria(insc.getMateria().getId());
+                if (insc.getId() == idI) {
+                    int idM = materia.getId();
+                    double notaM = Double.parseDouble(this.jTNotas.getValueAt(filaS, 2).toString());
+                    if (notaM >= 0 && notaM <= 10.0) {
+                        inscripcionData.actualizarNota(idA, idM, notaM);
+                    } else {
+                        JOptionPane.showMessageDialog(this, "     Nota fuera de rango\n"
+                                + "la nota debe ser de 0.0 al 10.0");
+                    }
+                }
             }
         } else {
             JOptionPane.showMessageDialog(null, "No ha seleccionado registro");
@@ -209,14 +193,38 @@ public class NotasVista extends javax.swing.JInternalFrame {
         jTNotas.setModel(modelo);
     }
 
+    private void cargarComboBox() {
+        DefaultComboBoxModel<Alumno> modeloCB = new DefaultComboBoxModel<>();
+        ArrayList<Alumno> alumnos = (ArrayList<Alumno>) alumnosData.listarAlumnos(); // Supongamos que obtienes la lista de alumnos de alguna fuente
+
+        for (Alumno alumno : alumnos) {
+            modeloCB.addElement(alumno); // Agrega el objeto Alumno al modelo
+        }
+
+        jCNotas.setModel(modeloCB); // Asigna el modelo al JComboBox
+
+        // Configura un renderer personalizado para mostrar la representación personalizada en el JComboBox
+        jCNotas.setRenderer(new DefaultListCellRenderer() {
+            @Override
+            public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+                if (value instanceof Alumno) {
+                    Alumno alumno = (Alumno) value;
+                    String nombreCompleto = alumno.getDni() + " - " + alumno.getApellido() + ", " + alumno.getNombre();
+                    value = nombreCompleto;
+                }
+                return super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+            }
+        }
+        );
+    }
+
     private void cargarDatosATabla() {
-        Alumno alumno = (Alumno) jCNotas.getSelectedItem();
+        alumno = (Alumno) jCNotas.getSelectedItem();
         int id = alumno.getId();
-        List<Inscripcion> inscripciones = inscripcionData.obtenerInscripcionesPorAlumno(id);
+        inscripciones = inscripcionData.obtenerInscripcionesPorAlumno(id);
         modelo.setRowCount(0);
         for (Inscripcion insc : inscripciones) {
-            materia = mat.buscarMateria(insc.getMateria().getId());
-            modelo.addRow(new Object[]{insc.getId(), materia.getNombre(), insc.getNota()});
+            modelo.addRow(new Object[]{insc.getId(), mat.buscarMateria(insc.getMateria().getId()).getNombre(), insc.getNota()});
         }
     }
 }
