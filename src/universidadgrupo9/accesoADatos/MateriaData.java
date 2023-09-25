@@ -25,9 +25,7 @@ public class MateriaData {
 
         Icon icono = new ImageIcon(getClass().getResource("/universidadgrupo9/imagenes/materia.png"));
         String result = compareMat(mat.getNombre());
-        //System.out.println(result);
-        //System.out.println(mat.getNombre());
-
+        
         if (result.equalsIgnoreCase(mat.getNombre())) {
 
             JOptionPane.showMessageDialog(null, "La materia ya esta cargada");

@@ -193,10 +193,7 @@ public class MateriaVista extends javax.swing.JInternalFrame {
             Materia mb = md.buscarMateria(id);
             if (mb == null) {
                 JOptionPane.showMessageDialog(this, "No hay materia con ese codigo");
-                jTFCodigo.setText("");
-                jTFNombre.setText("");
-                jTFAnioMateria.setText("");
-                jRadioBEstado.setSelected(false);
+                limpiar();
             } else {
                 jTFCodigo.setText(String.valueOf(mb.getId()));
                 jTFNombre.setText(mb.getNombre());
@@ -209,10 +206,7 @@ public class MateriaVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBBuscarActionPerformed
 
     private void jBLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLimpiarActionPerformed
-        jTFCodigo.setText("");
-        jTFNombre.setText("");
-        jTFAnioMateria.setText("");
-        jRadioBEstado.setSelected(false);
+        limpiar();
     }//GEN-LAST:event_jBLimpiarActionPerformed
 
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
@@ -220,6 +214,7 @@ public class MateriaVista extends javax.swing.JInternalFrame {
             int id = Integer.parseInt(jTFCodigo.getText());
             MateriaData md = new MateriaData();
             md.eliminarMateria(id);
+           limpiar();
 
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "Error en el numero de codigo -" + ex.getMessage());
@@ -236,10 +231,7 @@ public class MateriaVista extends javax.swing.JInternalFrame {
                     Materia mat = new Materia(jTFNombre.getText(), Integer.parseInt(jTFAnioMateria.getText()), true);
                     MateriaData md = new MateriaData();
                     md.guardarMateria(mat);
-                    jTFCodigo.setText("");
-                    jTFNombre.setText("");
-                    jTFAnioMateria.setText("");
-                    jRadioBEstado.setSelected(false);
+                    limpiar();
                 }
             } else {
                 if (jTFNombre.getText().isEmpty() || jTFAnioMateria.getText().isEmpty()) {
@@ -248,10 +240,7 @@ public class MateriaVista extends javax.swing.JInternalFrame {
                     Materia mat = new Materia(Integer.parseInt(jTFCodigo.getText()), jTFNombre.getText(), Integer.parseInt(jTFAnioMateria.getText()), jRadioBEstado.isSelected());
                     MateriaData md = new MateriaData();
                     md.modificarMateria(mat);
-                    jTFCodigo.setText("");
-                    jTFNombre.setText("");
-                    jTFAnioMateria.setText("");
-                    jRadioBEstado.setSelected(false);
+                    limpiar();
                 }
             }
         } catch (NumberFormatException ex) {
@@ -284,4 +273,13 @@ public class MateriaVista extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTFCodigo;
     private javax.swing.JTextField jTFNombre;
     // End of variables declaration//GEN-END:variables
+
+    private void limpiar() {
+
+        jTFCodigo.setText("");
+        jTFNombre.setText("");
+        jTFAnioMateria.setText("");
+        jRadioBEstado.setSelected(false);
+
+    }
 }
