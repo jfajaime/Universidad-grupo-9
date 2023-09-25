@@ -1,18 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package universidadgrupo9.vistas;
 
 import javax.swing.JOptionPane;
 import universidadgrupo9.accesoADatos.MateriaData;
 import universidadgrupo9.entidades.Materia;
 
-/**
- *
- * @author jfaja
- */
 public class MateriaVista extends javax.swing.JInternalFrame {
 
     public MateriaVista() {
@@ -196,44 +187,35 @@ public class MateriaVista extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
-
         try {
             int id = Integer.parseInt(jTFCodigo.getText());
             MateriaData md = new MateriaData();
             Materia mb = md.buscarMateria(id);
-
             if (mb == null) {
                 JOptionPane.showMessageDialog(this, "No hay materia con ese codigo");
                 jTFCodigo.setText("");
                 jTFNombre.setText("");
                 jTFAnioMateria.setText("");
                 jRadioBEstado.setSelected(false);
-
             } else {
                 jTFCodigo.setText(String.valueOf(mb.getId()));
                 jTFNombre.setText(mb.getNombre());
                 jTFAnioMateria.setText(String.valueOf(mb.getAnio()));
                 jRadioBEstado.setSelected(mb.isEstado()); // Establecer el radio button como seleccionado
             }
-
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "Error en el numero de codigo -" + ex.getMessage());
         }
-
-
     }//GEN-LAST:event_jBBuscarActionPerformed
 
     private void jBLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLimpiarActionPerformed
-
         jTFCodigo.setText("");
         jTFNombre.setText("");
         jTFAnioMateria.setText("");
         jRadioBEstado.setSelected(false);
-
     }//GEN-LAST:event_jBLimpiarActionPerformed
 
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
-
         try {
             int id = Integer.parseInt(jTFCodigo.getText());
             MateriaData md = new MateriaData();
@@ -245,15 +227,12 @@ public class MateriaVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBEliminarActionPerformed
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
-
         try {
             if (jTFCodigo.getText().isEmpty()) {
 
                 if (jTFNombre.getText().isEmpty() || jTFAnioMateria.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(this, "Hay campos vacios");
-
                 } else {
-
                     Materia mat = new Materia(jTFNombre.getText(), Integer.parseInt(jTFAnioMateria.getText()), true);
                     MateriaData md = new MateriaData();
                     md.guardarMateria(mat);
@@ -261,14 +240,10 @@ public class MateriaVista extends javax.swing.JInternalFrame {
                     jTFNombre.setText("");
                     jTFAnioMateria.setText("");
                     jRadioBEstado.setSelected(false);
-
                 }
-
             } else {
-
                 if (jTFNombre.getText().isEmpty() || jTFAnioMateria.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(this, "Hay campos vacios");
-
                 } else {
                     Materia mat = new Materia(Integer.parseInt(jTFCodigo.getText()), jTFNombre.getText(), Integer.parseInt(jTFAnioMateria.getText()), jRadioBEstado.isSelected());
                     MateriaData md = new MateriaData();
@@ -277,9 +252,7 @@ public class MateriaVista extends javax.swing.JInternalFrame {
                     jTFNombre.setText("");
                     jTFAnioMateria.setText("");
                     jRadioBEstado.setSelected(false);
-
                 }
-
             }
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "Error en el campo numerico");
@@ -294,7 +267,6 @@ public class MateriaVista extends javax.swing.JInternalFrame {
 
         this.dispose();
     }//GEN-LAST:event_jBSalirActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBBuscar;

@@ -5,7 +5,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
-//Realizamos patron Singleton para la conexion a base de datos
 public class Conexion {
     private static final String URL = "jdbc:mariadb://localhost/";
     private static final String BD = "universidadgrupo9";
@@ -15,7 +14,6 @@ public class Conexion {
     
     private Conexion (){
         try {
-            //Cargamos driver de conexion
             Class.forName("org.mariadb.jdbc.Driver");
             JOptionPane.showMessageDialog(null, "Driver cargados");
         } catch (ClassNotFoundException ex) {
@@ -27,7 +25,6 @@ public class Conexion {
         if (connection == null) {
             try {
                 Conexion conexion = new Conexion();
-                //Conectamos a base de datos
                 connection = DriverManager.getConnection(URL + BD, USUARIO, PASSWORD);
                 JOptionPane.showMessageDialog(null, "Conexion exitosa");
                 
@@ -36,6 +33,5 @@ public class Conexion {
             }
         }
         return connection;  
-    }
-    
+    }  
 }

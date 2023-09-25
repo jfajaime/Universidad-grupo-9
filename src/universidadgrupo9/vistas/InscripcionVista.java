@@ -33,15 +33,11 @@ public class InscripcionVista extends javax.swing.JInternalFrame {
 
     private void cargarComboBox() {
         DefaultComboBoxModel<Alumno> modeloCB = new DefaultComboBoxModel<>();
-        ArrayList<Alumno> alumnos = (ArrayList<Alumno>) alumnosData.listarAlumnos(); // Supongamos que obtienes la lista de alumnos de alguna fuente
-
+        ArrayList<Alumno> alumnos = (ArrayList<Alumno>) alumnosData.listarAlumnos();
         for (Alumno alumno : alumnos) {
-            modeloCB.addElement(alumno); // Agrega el objeto Alumno al modelo
+            modeloCB.addElement(alumno);
         }
-
-        jCAlumnos.setModel(modeloCB); // Asigna el modelo al JComboBox
-
-        // Configura un renderer personalizado para mostrar la representación personalizada en el JComboBox
+        jCAlumnos.setModel(modeloCB);
         jCAlumnos.setRenderer(new DefaultListCellRenderer() {
             @Override
             public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
@@ -54,9 +50,6 @@ public class InscripcionVista extends javax.swing.JInternalFrame {
             }
         });
     }
-
-
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -271,12 +264,10 @@ public class InscripcionVista extends javax.swing.JInternalFrame {
         try {
             Alumno alumno = (Alumno) jCAlumnos.getSelectedItem();
             int filaS = jTInscripcion.getSelectedRow();
-
             if (filaS != -1) {
                 int idM = (int) jTInscripcion.getValueAt(filaS, 0);
                 Materia materia = materiaX.buscarMateria(idM);
-                insc = new Inscripcion(0.0, alumno, materia);
-               
+                insc = new Inscripcion(0.0, alumno, materia);              
                 inscripcionData.guardarInscripcion(insc);
                 modelo.removeRow(filaS);
             } else if (filaS == -1) {
@@ -327,25 +318,25 @@ public class InscripcionVista extends javax.swing.JInternalFrame {
     }
 
     private void cargarDatosATabla() {
-        Alumno alumno = (Alumno) jCAlumnos.getSelectedItem();//selecciona el alumno en el comboBox
+        Alumno alumno = (Alumno) jCAlumnos.getSelectedItem();
         int id = alumno.getId();
         modelo.setRowCount(0);
         if (!jRMateriasInscriptas.isSelected() && !jRMateriasNOInscriptas.isSelected()) {
-            jRMateriasInscriptas.setSelected(true); //si ningun jRadioButtom esta seleccionado, selecciona jRMateriasInsgresadas
+            jRMateriasInscriptas.setSelected(true);
         }
         if (jRMateriasInscriptas.isSelected()) {
-            jBBorrarInsripcion.setEnabled(true);//habilita jBBorrarInscripcion
-            jBInscribir.setEnabled(false);//deshabilita jBInscripcion
-            List<Materia> materiasCursadas = inscripcionData.obtenerMateriasCursadas(id);//Instacia de lista Materia
+            jBBorrarInsripcion.setEnabled(true);
+            jBInscribir.setEnabled(false);
+            List<Materia> materiasCursadas = inscripcionData.obtenerMateriasCursadas(id);
             for (Materia materia : materiasCursadas) {
-                modelo.addRow(new Object[]{materia.getId(), materia.getNombre(), materia.getAnio()});//Devuelve las materias una x una dentro de la tabla
+                modelo.addRow(new Object[]{materia.getId(), materia.getNombre(), materia.getAnio()});
             }
         } else if (jRMateriasNOInscriptas.isSelected()) {
-            jBInscribir.setEnabled(true);//habilita jBInsscripcion
-            jBBorrarInsripcion.setEnabled(false);//deshabilita jBBorrarInscripcion
+            jBInscribir.setEnabled(true);
+            jBBorrarInsripcion.setEnabled(false);
             List<Materia> materiasNoCursadas = inscripcionData.obtenerMateriasNOCursadas(id);
             for (Materia materia : materiasNoCursadas) {
-                modelo.addRow(new Object[]{materia.getId(), materia.getNombre(), materia.getAnio()});//Devuelve las materias una x una dentro de la tabla
+                modelo.addRow(new Object[]{materia.getId(), materia.getNombre(), materia.getAnio()});
             }
         }
     }

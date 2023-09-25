@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package universidadgrupo9.accesoADatos;
 
 import java.sql.Connection;
@@ -18,10 +13,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import universidadgrupo9.entidades.Alumno;
 
-/**
- *
- * @author jfaja
- */
 public class AlumnoData {
 
     private Connection con = null;

@@ -21,12 +21,10 @@ public class Inscripcion {
         this.materia = materia;
     }
 
-
     public Inscripcion() {
         this.id = -1;
     }
 
-    
     public int getId() {
         return id;
     }

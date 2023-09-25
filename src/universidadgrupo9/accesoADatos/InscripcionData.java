@@ -99,15 +99,10 @@ public class InscripcionData {
 
                 inscripcion.setId(rs.getInt("idInscripcion"));
                 inscripcion.setNota(rs.getDouble("nota"));
-                // obtengo el id de la materia
                 int idMateria = rs.getInt("idMateria");
-                //Creo una instancia
                 Materia materia = new Materia();
-                //Busco la materia por el id
                 materia.setId(idMateria);
-                //cargo la materia a la variable inscripcion
                 inscripcion.setMateria(materia);
-                //vuelco todo al ArrayList inscripciones
                 inscripciones.add(inscripcion);
             }
             ps.close();
@@ -132,9 +127,7 @@ public class InscripcionData {
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                //instancio un objeto materia
                 Materia materia = new Materia();
-                //igualo el objeto al id
                 materia.setId(rs.getInt("idMateria"));
                 materia.setNombre(rs.getString("nombre"));
                 materia.setAnio(rs.getInt("Año"));
@@ -215,7 +208,6 @@ public class InscripcionData {
             ps.setInt(2, idAlumno);
             ps.setInt(3, idMateria);
             int filasActualizadas = ps.executeUpdate();
-            System.out.println("filas " + filasActualizadas);
             if (filasActualizadas != -1) {
                 JOptionPane.showMessageDialog(null, "Nota actualizada con éxito.");
             } else {

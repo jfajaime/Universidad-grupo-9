@@ -28,14 +28,11 @@ public class AlumnoPorMateriaVista extends javax.swing.JInternalFrame {
     private void cargarComboBox() {
         DefaultComboBoxModel<Materia> modelo = new DefaultComboBoxModel<>();
         ArrayList<Materia> materias = (ArrayList<Materia>) materiasData.listarMaterias();
-
         for (Materia materia : materias) {  
             modelo.addElement(materia);
         }
 
         jCMateria.setModel(modelo);
-
-        // Para mostrar solo el nombre en el JComboBox
         jCMateria.setRenderer(new DefaultListCellRenderer() {
         @Override
         public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
@@ -150,7 +147,6 @@ public class AlumnoPorMateriaVista extends javax.swing.JInternalFrame {
         cargarDatosATabla();
     }//GEN-LAST:event_jCMateriaActionPerformed
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<Materia> jCMateria;
@@ -166,6 +162,7 @@ public class AlumnoPorMateriaVista extends javax.swing.JInternalFrame {
         modelo.addColumn("Nombre");
         jTConsultas.setModel(modelo);
     }
+    
     private void cargarDatosATabla() {
         materia = (Materia) jCMateria.getSelectedItem();
         int idM = materia.getId();

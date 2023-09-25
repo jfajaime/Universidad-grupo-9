@@ -2,41 +2,39 @@ package universidadgrupo9.entidades;
 
 import java.time.LocalDate;
 
-/**
- *
- * @author josel
- */
 public class Alumno {
-    
-    private int id=-1;
+
+    private int id = -1;
     private int dni;
     private String apellido;
     private String nombre;
     private LocalDate fechaN;
     private boolean estado;
-    
-    
-    public Alumno(int id, int dni, String apellido, String nombre, LocalDate fechaN, boolean estado){
-    
-        this.id=id;
-        this.dni = dni;
-        this.apellido = apellido;
-        this.nombre = nombre;
-        this.fechaN = fechaN;
-        this.estado = estado;
-    };
 
-    public Alumno(int dni, String apellido, String nombre, LocalDate fechaN, boolean estado) {
-        
+    public Alumno(int id, int dni, String apellido, String nombre, LocalDate fechaN, boolean estado) {
+
+        this.id = id;
         this.dni = dni;
         this.apellido = apellido;
         this.nombre = nombre;
         this.fechaN = fechaN;
         this.estado = estado;
     }
-     public Alumno() {}
 
-    
+    ;
+
+    public Alumno(int dni, String apellido, String nombre, LocalDate fechaN, boolean estado) {
+
+        this.dni = dni;
+        this.apellido = apellido;
+        this.nombre = nombre;
+        this.fechaN = fechaN;
+        this.estado = estado;
+    }
+
+    public Alumno() {
+    }
+
     public int getDni() {
         return dni;
     }
@@ -89,6 +87,5 @@ public class Alumno {
     public String toString() {
         return "Alumno{" + "id= " + id + ", dni= " + dni + ", apellido= " + apellido + ", nombre= " + nombre + ", fechaN= " + fechaN + ", estado= " + estado + '}';
     }
-    
-    
+
 }

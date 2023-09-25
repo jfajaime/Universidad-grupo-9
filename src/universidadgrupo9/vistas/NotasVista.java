@@ -176,7 +176,6 @@ public class NotasVista extends javax.swing.JInternalFrame {
         cargarDatosATabla();
     }//GEN-LAST:event_jCNotasActionPerformed
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBguardar;
     private javax.swing.JButton jButton2;
@@ -195,15 +194,12 @@ public class NotasVista extends javax.swing.JInternalFrame {
 
     private void cargarComboBox() {
         DefaultComboBoxModel<Alumno> modeloCB = new DefaultComboBoxModel<>();
-        ArrayList<Alumno> alumnos = (ArrayList<Alumno>) alumnosData.listarAlumnos(); // Supongamos que obtienes la lista de alumnos de alguna fuente
-
+        ArrayList<Alumno> alumnos = (ArrayList<Alumno>) alumnosData.listarAlumnos();
         for (Alumno alumno : alumnos) {
-            modeloCB.addElement(alumno); // Agrega el objeto Alumno al modelo
+            modeloCB.addElement(alumno);
         }
 
-        jCNotas.setModel(modeloCB); // Asigna el modelo al JComboBox
-
-        // Configura un renderer personalizado para mostrar la representación personalizada en el JComboBox
+        jCNotas.setModel(modeloCB);
         jCNotas.setRenderer(new DefaultListCellRenderer() {
             @Override
             public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {

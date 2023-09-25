@@ -1,23 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package universidadgrupo9.vistas;
 
-import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import universidadgrupo9.accesoADatos.MateriaData;
 import universidadgrupo9.entidades.Materia;
 
-/**
- *
- * @author josel
- */
 public class ListadoDeMaterias extends javax.swing.JInternalFrame {
 
     private DefaultTableModel modelo = new DefaultTableModel() {
-
         public boolean isCellEditable(int f, int c) {
             return false;
         }
@@ -106,25 +95,21 @@ public class ListadoDeMaterias extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTBuscarPorNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTBuscarPorNombreKeyReleased
-
         borrarFilas();
-         MateriaData md = new MateriaData();
-      
-        for (Materia mat :  md.listarMaterias()) {
+        MateriaData md = new MateriaData();
+
+        for (Materia mat : md.listarMaterias()) {
 
             if (mat.getNombre().toLowerCase().startsWith(jTBuscarPorNombre.getText().toLowerCase())) {
 
                 modelo.addRow(new Object[]{
-                   mat.getId(),
-                   mat.getNombre(),
-                   mat.getAnio(),
-                   mat.isEstado()
-
+                    mat.getId(),
+                    mat.getNombre(),
+                    mat.getAnio(),
+                    mat.isEstado()
                 });
             }
         }
-
-
     }//GEN-LAST:event_jTBuscarPorNombreKeyReleased
 
 
@@ -137,23 +122,18 @@ public class ListadoDeMaterias extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     private void listarMaterias() {
-
         MateriaData md = new MateriaData();
-
         for (Materia m : md.listarMaterias()) {
             modelo.addRow(new Object[]{
                 m.getId(),
                 m.getNombre(),
                 m.getAnio(),
                 m.isEstado()
-
             });
         }
-
     }
 
     private void armarCabecera() {
-
         modelo.addColumn("Id Materia");
         modelo.addColumn("Nombre");
         modelo.addColumn("Año");
@@ -162,10 +142,8 @@ public class ListadoDeMaterias extends javax.swing.JInternalFrame {
     }
 
     private void borrarFilas() {
-
         int filas = jTListaMaterias.getRowCount() - 1;
         for (int f = filas; f >= 0; f--) {
-
             modelo.removeRow(f);
         }
     }
