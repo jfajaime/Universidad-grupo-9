@@ -260,7 +260,6 @@ public class AlumnosVista extends javax.swing.JInternalFrame {
                 java.util.Date fechaNacimiento = java.sql.Date.valueOf(alumno.getFechaN());
                 jDateChooser1.setDate(fechaNacimiento);
             } else {
-                JOptionPane.showMessageDialog(this, "Alumno no encontrado");
                 limpiar();
             }
         } catch (NumberFormatException e) {

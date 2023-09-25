@@ -46,7 +46,6 @@ public class NotasVista extends javax.swing.JInternalFrame {
         jButton2 = new javax.swing.JButton();
 
         setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 51, 51)));
-        setClosable(true);
         setTitle("Gestion de Notas");
         setMinimumSize(new java.awt.Dimension(800, 400));
         setPreferredSize(new java.awt.Dimension(800, 400));
@@ -198,7 +197,6 @@ public class NotasVista extends javax.swing.JInternalFrame {
         for (Alumno alumno : alumnos) {
             modeloCB.addElement(alumno);
         }
-
         jCNotas.setModel(modeloCB);
         jCNotas.setRenderer(new DefaultListCellRenderer() {
             @Override
@@ -219,7 +217,7 @@ public class NotasVista extends javax.swing.JInternalFrame {
         int id = alumno.getId();
         inscripciones = inscripcionData.obtenerInscripcionesPorAlumno(id);
         modelo.setRowCount(0);
-        for (Inscripcion insc : inscripciones) {
+        for (Inscripcion insc : inscripciones) {    
             modelo.addRow(new Object[]{insc.getId(), mat.buscarMateria(insc.getMateria().getId()).getNombre(), insc.getNota()});
         }
     }

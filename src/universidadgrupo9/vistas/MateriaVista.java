@@ -30,7 +30,6 @@ public class MateriaVista extends javax.swing.JInternalFrame {
         jTFAnioMateria = new javax.swing.JTextField();
 
         setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 0, 51)));
-        setClosable(true);
         setTitle("Gestion de Materia");
         setMinimumSize(new java.awt.Dimension(800, 350));
         setPreferredSize(new java.awt.Dimension(800, 350));
@@ -149,7 +148,7 @@ public class MateriaVista extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(11, 11, 11)
                         .addComponent(jBLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 798, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))

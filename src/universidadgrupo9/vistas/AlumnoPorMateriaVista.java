@@ -56,7 +56,6 @@ public class AlumnoPorMateriaVista extends javax.swing.JInternalFrame {
         jButton1 = new javax.swing.JButton();
 
         setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 51, 51)));
-        setClosable(true);
         setTitle("Gestion de Alumnos por Materia");
         setMinimumSize(new java.awt.Dimension(800, 350));
         setPreferredSize(new java.awt.Dimension(800, 350));

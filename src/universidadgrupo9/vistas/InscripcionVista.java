@@ -99,7 +99,6 @@ public class InscripcionVista extends javax.swing.JInternalFrame {
         jScrollPane2.setViewportView(jTable2);
 
         setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 51, 102)));
-        setClosable(true);
         setTitle("Gestion de Inscripcion");
         setMinimumSize(new java.awt.Dimension(800, 450));
         setPreferredSize(new java.awt.Dimension(800, 450));
@@ -290,7 +289,6 @@ public class InscripcionVista extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "No ha seleccionado ninguna materia");
         }
     }//GEN-LAST:event_jBBorrarInsripcionActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;

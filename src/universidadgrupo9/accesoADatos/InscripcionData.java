@@ -60,18 +60,14 @@ public class InscripcionData {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                //Creo instanacias de alumno y materia
                 Alumno alumno = new Alumno();
                 Materia materia = new Materia();
-                //equiparo los ids con los objetos creados
                 alumno.setId(rs.getInt("idAlumno"));
                 materia.setId(rs.getInt("idMateria"));
-                //vuelco todo al objeto inscripcion
                 inscripcion.setId(rs.getInt("idInscripcion"));
                 inscripcion.setNota(rs.getDouble("nota"));
                 inscripcion.setAlumno(alumno);
                 inscripcion.setMateria(materia);
-                //vuelco todo al ArrayList
                 inscripciones.add(inscripcion);
             }
             ps.close();
@@ -92,11 +88,8 @@ public class InscripcionData {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
-
             while (rs.next()) {
-
                 Inscripcion inscripcion = new Inscripcion();
-
                 inscripcion.setId(rs.getInt("idInscripcion"));
                 inscripcion.setNota(rs.getDouble("nota"));
                 int idMateria = rs.getInt("idMateria");
@@ -139,7 +132,6 @@ public class InscripcionData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Materia: " + ex.getMessage());
         }
-        System.out.println(materiasCursadas + "\n");
         return materiasCursadas;
     }
 
@@ -161,10 +153,8 @@ public class InscripcionData {
                 materia.setId(rs.getInt("idMateria"));
                 materia.setNombre(rs.getString("nombre"));
                 materia.setAnio(rs.getInt("Año"));
-
                 materiasNoCursadas.add(materia);
             }
-
             ps.close();
             rs.close();
         } catch (SQLException ex) {
@@ -183,14 +173,11 @@ public class InscripcionData {
             ps.setInt(1, idAlumno);
             ps.setInt(2, idMateria);
             int filasBorradas = ps.executeUpdate();
-
             if (filasBorradas > 0) {
                 JOptionPane.showMessageDialog(null, "Inscripción eliminada con éxito.", "Mensaje", JOptionPane.PLAIN_MESSAGE, icono);
-
             } else {
                 JOptionPane.showMessageDialog(null, "No se encontró la inscripción a borrar.");
             }
-
             ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al borrar la inscripción: " + ex.getMessage());
