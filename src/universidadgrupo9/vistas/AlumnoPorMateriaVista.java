@@ -13,7 +13,11 @@ import universidadgrupo9.entidades.Alumno;
 import universidadgrupo9.entidades.Materia;
 
 public class AlumnoPorMateriaVista extends javax.swing.JInternalFrame {
-    private DefaultTableModel modelo = new DefaultTableModel();
+   private DefaultTableModel modelo = new DefaultTableModel() {
+        public boolean isCellEditable(int f, int c) {
+            return false;
+        }
+    };
     InscripcionData inscripcionData = new InscripcionData();
     MateriaData materiasData = new MateriaData(); 
     Materia materia = new Materia();

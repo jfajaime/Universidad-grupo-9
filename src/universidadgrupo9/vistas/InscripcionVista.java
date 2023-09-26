@@ -17,7 +17,12 @@ import universidadgrupo9.entidades.Inscripcion;
 
 public class InscripcionVista extends javax.swing.JInternalFrame {
 
-    private DefaultTableModel modelo = new DefaultTableModel();
+     private DefaultTableModel modelo = new DefaultTableModel() {
+        public boolean isCellEditable(int f, int c) {
+            return false;
+        }
+    };
+   
     InscripcionData inscripcionData = new InscripcionData();
     AlumnoData alumnosData = new AlumnoData();
     Inscripcion insc = new Inscripcion();
@@ -150,7 +155,15 @@ public class InscripcionVista extends javax.swing.JInternalFrame {
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jTInscripcion.setRowHeight(20);
         jScrollPane3.setViewportView(jTInscripcion);
 
