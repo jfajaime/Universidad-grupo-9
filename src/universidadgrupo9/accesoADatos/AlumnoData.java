@@ -160,7 +160,6 @@ public class AlumnoData {
 
         try {
             ps = con.prepareStatement(sql);
-            System.out.println(sql);
             ps.setInt(1, alumno.getDni());
             ps.setString(2, alumno.getApellido());
             ps.setString(3, alumno.getNombre());
@@ -169,7 +168,7 @@ public class AlumnoData {
             int exito = ps.executeUpdate();
 
             if (exito == 1) {
-                JOptionPane.showMessageDialog(null, "Alumno modificao con exito.", "Mensaje", JOptionPane.PLAIN_MESSAGE, icono);
+                JOptionPane.showMessageDialog(null, "Alumno modificado con exito.", "Mensaje", JOptionPane.PLAIN_MESSAGE, icono);
 
             } else {
                 JOptionPane.showMessageDialog(null, "El alumno no existe");
