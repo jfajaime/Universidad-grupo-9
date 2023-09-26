@@ -147,26 +147,31 @@ public class NotasVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jBguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBguardarActionPerformed
-        if (jTNotas.getSelectedRow() != -1) {
-            alumno = (Alumno) jCNotas.getSelectedItem();
-            int filaS = jTNotas.getSelectedRow();
-            int idA = alumno.getId();
-            int idI = (int) this.jTNotas.getValueAt(filaS, 0);
-            for (Inscripcion insc : inscripciones) {
-                materia = mat.buscarMateria(insc.getMateria().getId());
-                if (insc.getId() == idI) {
-                    int idM = materia.getId();
-                    double notaM = Double.parseDouble(this.jTNotas.getValueAt(filaS, 2).toString());
-                    if (notaM >= 0 && notaM <= 10.0) {
-                        inscripcionData.actualizarNota(idA, idM, notaM);
-                    } else {
-                        JOptionPane.showMessageDialog(this, "     Nota fuera de rango\n"
-                                + "la nota debe ser de 0.0 al 10.0");
+
+        try {
+            if (jTNotas.getSelectedRow() != -1) {
+                alumno = (Alumno) jCNotas.getSelectedItem();
+                int filaS = jTNotas.getSelectedRow();
+                int idA = alumno.getId();
+                int idI = (int) this.jTNotas.getValueAt(filaS, 0);
+                for (Inscripcion insc : inscripciones) {
+                    materia = mat.buscarMateria(insc.getMateria().getId());
+                    if (insc.getId() == idI) {
+                        int idM = materia.getId();
+                        double notaM = Double.parseDouble(this.jTNotas.getValueAt(filaS, 2).toString());
+                        if (notaM >= 0 && notaM <= 10.0) {
+                            inscripcionData.actualizarNota(idA, idM, notaM);
+                        } else {
+                            JOptionPane.showMessageDialog(this, "     Nota fuera de rango\n"
+                                    + "la nota debe ser de 0.0 al 10.0");
+                        }
                     }
                 }
+            } else {
+                JOptionPane.showMessageDialog(null, "No ha seleccionado registro");
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "No ha seleccionado registro");
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Dato no valido -" + ex.getMessage());
         }
         cargarDatosATabla();
     }//GEN-LAST:event_jBguardarActionPerformed
@@ -217,7 +222,7 @@ public class NotasVista extends javax.swing.JInternalFrame {
         int id = alumno.getId();
         inscripciones = inscripcionData.obtenerInscripcionesPorAlumno(id);
         modelo.setRowCount(0);
-        for (Inscripcion insc : inscripciones) {    
+        for (Inscripcion insc : inscripciones) {
             modelo.addRow(new Object[]{insc.getId(), mat.buscarMateria(insc.getMateria().getId()).getNombre(), insc.getNota()});
         }
     }
